@@ -1,0 +1,77 @@
+  <footer>
+    <div class="footer-picture flex-row center">
+      <ul class="links">
+        <li><a href='#'>Home</a></li>
+        <li><a href='#'>Home</a></li>
+        <li><a href='#'>Home</a></li>
+        <li><a href='#'>Home</a></li>
+      </ul>
+
+      <div class="disclaimer">
+        <p>Design by ©
+          <strong>Olja Ivkovic</strong></p>
+        <p>This site is a project for <strong>ICT College</strong>, made for educational purposes. I don't intend to
+          profit nor gain any rights. All
+          rights go to their rightful owners.</p>
+
+        <a href="https://github.com/" class="fab fa-github"></a>
+        <a href="https://www.instagram.com/?hl=sr" class="fab fa-instagram"></a>
+        <a href="https://www.facebook.com/" class="fab fa-facebook"></a>
+      </div>
+    </div>
+
+    <!-- LOGIN MODAL  -->
+    <div class='modal'>
+      <div class='card'>
+        <div class='card__face card__face--front flex-col center'>
+          <h1>Login</h1>
+          <span class='modal-exit'>&times;</span>
+          <form action='php/login.php' name='login-forma' method='POST'>
+            <div class='relative'>
+              <input type='text' name='email' placeholder='Email' />
+              <span class='fas fa-at fa-span fs-login absolute'></span>
+            </div>
+            <p class='form-error errEmail'></p>
+
+            <div class='relative'>
+              <input type='password' name='password' placeholder='Password' />
+              <span class='fas fa-key fa-span fs-login absolute'></span>
+            </div>
+            <p class='form-error errPass'></p>
+
+            <button id='login' name='login' class='btn-style'>Login</button>
+            <button id='register-btn' class='btn-style'>Register</button>
+          </form>
+        </div>
+
+        <!-- REGISTER MODAL  -->
+        <div class='card__face card__face--back flex-col center'>
+          <h1>Register</h1>
+          <span class='modal-exit'>&times;</span>
+          <form action='php/register.php' name='reg-forma' method='POST'>
+            <div class='relative'>
+              <input type='text' name='reg-email' placeholder='Email' />
+              <span class='fas fa-at fa-span fs-reg absolute'></span>
+            </div>
+            <p class='form-error errEmail'></p>
+
+            <div class='relative'>
+              <input type='password' name='reg-password' placeholder='Password' />
+              <span class='fas fa-key fa-span fs-reg absolute'></span>
+            </div>
+            <p class='form-error errPass'></p>
+
+            <div class='relative'>
+              <input type='password' name='reg-confirm' placeholder='Confirm password' />
+              <span class='fas fa-unlock fa-span fs-reg absolute'></span>
+            </div>
+            <p class='form-error errConfirm'></p>
+
+            <button id='login-btn' name='login' class='btn-style'>Login</button>
+            <button id='register' class='btn-style' name='register'>Register</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </footer>
