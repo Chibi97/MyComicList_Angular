@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One|Raleway|Bangers');
 
-/* utils */
+/* ----- UTILITIES ----- */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -105,7 +106,7 @@ h2 {
   flex-flow: row wrap;
 }
 
-/* ----- Modal ------ */
+/* ----- MODAL LOG/REGISTER ----- */
 .modal {
   position: fixed;
   min-height: 40rem;
@@ -272,7 +273,8 @@ h2 {
   border: 2px solid white;
 }
 
-/* Tables */
+/* ----- TABLES ----- */
+
 .my-table {
   font-size: 2.2rem;
   border-collapse: collapse;
@@ -298,89 +300,6 @@ h2 {
 @media only screen and (max-width:700px) {
   .sf-article {
     margin: 0 2em;
-  }
-}
-
-/* styles */
-.slider {
-  background: transparent;
-  width: 100%;
-  min-height: 30rem;
-  /* margin-top: 6.5em; */
-  padding: 4.5em;
-  flex-wrap: nowrap;
-}
-
-/* .list-of-comics {
-  position: relative;
-} */
-
-.sneak-peek {
-  position: absolute;
-  top: -3.5em;
-  left: -2.2em;
-  background: #666A86;
-  min-width: 22em;
-  text-align: center;
-  color: white;
-  padding: .5em;
-  font-size: 1.9em;
-  letter-spacing: .2em;
-}
-
-.slider .fas {
-  color: white;
-  font-size: 4rem;
-  margin: .5em;
-  cursor: pointer;
-}
-
-.image-slider-wrap {
-  overflow: hidden;
-  width: 80rem;
-}
-
-.image-slider {
-  display: flex;
-  align-items: flex-start;
-}
-
-.image-slider img {
-  width: 200px;
-  flex: 0 0 200px;
-  margin: 0 .6em;
-}
-
-
-@media only screen and (max-width: 1300px) {
-  .sneak-peek {
-    position: absolute;
-    top: -2.3em;
-    left: 50%;
-    right: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .image-slider-wrap {
-    width: 60rem;
-  }
-}
-
-@media only screen and (max-width: 900px) {
-  .image-slider-wrap {
-    width: 40rem;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .sneak-peek {
-    min-width: 16.8em;
-  }
-
-  .image-slider-wrap {
-    width: 20rem;
   }
 }
 
@@ -575,6 +494,10 @@ h2 {
   align-self: flex-start;
 }
 
+.update-comic button.disabled {
+  cursor: not-allowed;
+}
+
 .add-comic h1 {
   font-family: 'Raleway', sans-serif;
   font-size: 2.5rem;
@@ -699,6 +622,7 @@ textarea {
 .series-b:before {
   background: #666A86;
 }
+
 
 /* -------- BROWSE ------- */
 

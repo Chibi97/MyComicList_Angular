@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent, NavbarComponent, FooterComponent, SliderComponent } from './index';
+import { DashboardComponent, NavbarComponent, FooterComponent, SliderComponent,
+  AdvertisementComponent } from './index';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { DashboardComponent, NavbarComponent, FooterComponent, SliderComponent }
     DashboardComponent,
     NavbarComponent,
     FooterComponent,
-    SliderComponent
+    SliderComponent,
+    AdvertisementComponent,
   ],
   imports: [
     BrowserModule,

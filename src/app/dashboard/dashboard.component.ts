@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
       <app-navbar></app-navbar>
     </header>
     <app-slider></app-slider>
+    <app-advertisement></app-advertisement>
     <app-footer></app-footer>
   `,
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
