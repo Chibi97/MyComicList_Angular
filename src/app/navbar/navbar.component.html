@@ -5,11 +5,19 @@
   </h1>
   <ul>
     <li>
-      <a [routerLink]="['/dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      <a [routerLink]="['/dashboard']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Home</a>
     </li>
-    <li><a [routerLink]="['/browse']">Browse</a></li>
-    <li><a [routerLink]="['/mylist']">My List</a></li>
-    <li><a [routerLink]="['/dashboard']">Login</a></li>
-    <li><a [routerLink]="['/dashboard']">Register</a></li>
+    <li>
+      <a [routerLink]="['/browse']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Browse</a>
+    </li>
+    <li>
+      <a [routerLink]="['/mylist']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">My List</a>
+    </li>
+    <li>
+      <a [routerLink]="['/dashboard']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Login</a>
+    </li>
+    <li>
+      <a [routerLink]="['/dashboard']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Register</a>
+    </li>
   </ul>
 </nav>
