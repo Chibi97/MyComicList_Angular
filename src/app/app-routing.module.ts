@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './index';
+import { DashboardComponent, BrowseComicsComponent } from './index';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'browse', component: BrowseComicsComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 
 ];

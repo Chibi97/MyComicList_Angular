@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `<app-dashboard></app-dashboard>`
+  template: `
+  <router-outlet></router-outlet>
+  `
 })
 export class AppComponent {
   title = 'MyComicList';
