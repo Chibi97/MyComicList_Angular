@@ -1,9 +1,6 @@
-<nav class='log-reg flex-row nav center'>
-  <h1>
-    <a class='logo' href='/index.php'>MyComicsList</a>
-  </h1>
+<!-- <nav class='log-reg flex-row nav center'>
+ 
   <ul> 
-    <!-- TODO: if statements -->
     <li><a [routerLink]="['/panel']" class='btn-style'>Admin panel</a></li>
 
     <li><a [routerLink]="['/logout']" class='btn-style'>Logout</a></li>
@@ -12,13 +9,17 @@
 
     <li><a [routerLink]="['/register']" class='btn-style open-modal-register'>Register</a></li>
   </ul>
-</nav>
+</nav> -->
 
-<nav class='navigation nav center'>
+<nav class='navigation flex-row nav'>
+  <h1>
+    <a class='logo' href='/'>MyComicsList</a>
+  </h1>
   <ul>
     <li><a [routerLink]="['/dashboard']">Home</a></li>
     <li><a [routerLink]="['/dashboard']">Browse</a></li>
     <li><a [routerLink]="['/dashboard']">MyList</a></li>
-    <li><a [routerLink]="['/dashboard']">About</a></li>
+    <li><a [routerLink]="['/dashboard']">Login</a></li>
+    <li><a [routerLink]="['/dashboard']">Register</a></li>
   </ul>
 </nav>
