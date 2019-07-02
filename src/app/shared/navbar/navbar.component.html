@@ -1,7 +1,6 @@
-
 <nav class='navigation flex-row nav'>
   <h1>
-    <a class='logo' [routerLink]="['/dashboard']" >MyComicsList</a>
+    <a class='logo' [routerLink]="['/dashboard']">MyComicsList</a>
   </h1>
   <ul>
     <li>
@@ -14,10 +13,11 @@
       <a [routerLink]="['/mylist']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">My List</a>
     </li>
     <li>
-      <a [routerLink]="['/dashboard']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Login</a>
+      <a [routerLink]="['/auth/login']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Login</a>
     </li>
     <li>
-      <a [routerLink]="['/dashboard']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Register</a>
+      <a [routerLink]="['/auth/register']" routerLinkActive="active-nav"
+        [routerLinkActiveOptions]="{exact:true}">Register</a>
     </li>
   </ul>
 </nav>

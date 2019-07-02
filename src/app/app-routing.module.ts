@@ -7,8 +7,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'browse', component: BrowseComicsComponent },
   { path: 'mylist', component: MyListComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
-
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'auth', loadChildren: './authorization/authorization.module#AuthorizationModule' }
 ];
 
 @NgModule({

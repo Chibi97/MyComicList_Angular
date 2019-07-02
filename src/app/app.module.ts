@@ -6,17 +6,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent, TemplateComponent, NavbarComponent, FooterComponent, SliderComponent,
-  AdvertisementComponent, FilteringComponent, BrowseComicsComponent, MyListComponent
- } from './index';
+import { DashboardComponent, SliderComponent, AdvertisementComponent, FilteringComponent,
+  BrowseComicsComponent, MyListComponent
+} from './index';
 
+import { SharedModule } from './shared/shared.module';
+import { AuthorizationModule } from './authorization/authorization.module';
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateComponent,
-    NavbarComponent,
     DashboardComponent,
-    FooterComponent,
     SliderComponent,
     AdvertisementComponent,
     FilteringComponent,
@@ -28,12 +27,10 @@ import { DashboardComponent, TemplateComponent, NavbarComponent, FooterComponent
     AppRoutingModule,
     BrowserAnimationsModule,
     NgbModule,
-    MDBBootstrapModule
+    MDBBootstrapModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-// export const routing = RouterModule.forRoot(APP_ROUTES, { enableTracing: true });
-
