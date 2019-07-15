@@ -1,23 +1,19 @@
-<nav class='navigation flex-row nav'>
-  <h1>
-    <a class='logo' [routerLink]="['/dashboard']">MyComicsList</a>
-  </h1>
-  <ul>
-    <li>
-      <a [routerLink]="['/dashboard']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Home</a>
-    </li>
-    <li>
-      <a [routerLink]="['/browse']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Browse</a>
-    </li>
-    <li>
-      <a [routerLink]="['/mylist']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">My List</a>
-    </li>
-    <li>
-      <a [routerLink]="['/auth/login']" routerLinkActive="active-nav" [routerLinkActiveOptions]="{exact:true}">Login</a>
-    </li>
-    <li>
-      <a [routerLink]="['/auth/register']" routerLinkActive="active-nav"
-        [routerLinkActiveOptions]="{exact:true}">Register</a>
-    </li>
-  </ul>
-</nav>
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="navigation">
+        <img src="../../../assets/images/favicon.ico" alt="logo" class="logo-img" />
+        <span class="text-uppercase logo">MyComicList</span>
+        <span class="spacer"></span>
+        <button mat-button routerLink='/'>Home</button>
+        <button mat-button routerLink='/browse'>Browse</button>
+        <button mat-button routerLink='/mylist'>My List</button>
+        <ng-container *ngIf="!auth.isLogged(); else signout">
+            <button mat-button routerLink='/login'>Log in</button>
+            <button mat-button routerLink='/register'>Register</button>
+        </ng-container>
+        <ng-template #signout>
+            <!-- TODO: protect admin panel -->
+            <button *ngIf="true" mat-button routerLink='/admin'>Admin panel</button>
+            <button mat-button (click)="logout()">Log Out</button>
+        </ng-template>
+    </mat-toolbar-row>
+</mat-toolbar>

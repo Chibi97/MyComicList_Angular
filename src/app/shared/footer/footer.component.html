@@ -1,14 +1,23 @@
 <footer>
-  <div class="footer-picture flex-row center">
-    <ul class="links">
-      <li><a href='#'>Home</a></li>
-      <li><a href='#'>Browse</a></li>
-      <li><a href='#'>My List</a></li>
-      <li><a href='#'>Login</a></li>
-      <li><a href='#'>Register</a></li>
+  <div fxLayout="row" fxLayoutAlign="center" class="footer-image">
+    <ul fxFlex="18em" class="links">
+      <li><a routerLink='/'>Home</a></li>
+      <li><a routerLink='/browse'>Browse</a></li>
+      <li><a routerLink='/mylist'>My List</a></li>
+
+      <ng-container *ngIf="!auth.isLogged(); else signout">
+        <li><a routerLink='/login'>Login</a></li>
+        <li><a routerLink='/register'>Register</a></li>
+      </ng-container>
+      <ng-template #signout>
+        <!-- TODO: protect admin panel -->
+        <li><a routerLink='/admin'>Admin panel</a></li>
+        <li><a (click)="logout()">Log Out</a></li>
+      </ng-template>
+
     </ul>
 
-    <div class="disclaimer">
+    <div class="disclaimer" fxFlex="14em">
       <p>Design by ©
         <strong>Olja Ivkovic</strong></p>
       <p>This site is a project for <strong>ICT College</strong>, made for educational purposes. I don't intend to

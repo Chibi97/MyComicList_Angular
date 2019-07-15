@@ -1,0 +1,26 @@
+ <mat-card class="example-card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <mat-card-title>{{comic.name}}</mat-card-title>
+    <mat-card-subtitle>
+        <ng-container *ngFor="let author of comic.authors; let i = index">
+          <span>{{author}}</span>
+          <span *ngIf="i !== comic.authors.length - 1">, </span>
+        </ng-container>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{comic.pictures[0]}}" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p class="description">
+      {{comic.description}}
+    </p>
+
+    <section fxLayout="column" gdAlignRows="end">
+        <p>{{comic.publishedAt | date}}</p>
+        <p>{{comic.publisher}}</p>
+    </section>
+  </mat-card-content>
+  <!-- <mat-card-actions fxLayout="column" gdAlignRows="end">
+    <button mat-button>Add to my list</button>
+  </mat-card-actions> -->
+</mat-card>

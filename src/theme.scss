@@ -1,0 +1,23 @@
+/*
+  See mat-palette() documentation on what pallets you can actually use.
+
+  How to do theming: https://www.freecodecamp.org/news/how-to-make-a-custom-theme-in-angular-material-d47122a1e361/
+
+  For example, to do foreground or background colors in the COMPONENT .scss file do this:
+  ```
+  $primary: map-get($my-theme, primary);
+  button { background-color: mat-color($primary); }
+  ```
+
+  This will modify the button background in regards to the theme, and work
+  out of the box for the material "normal" classes.
+  For example, the buttons have a color property that can be used like this.
+*/
+@import '~@angular/material/theming';
+@include mat-core();
+
+$comics-primary: mat-palette($mat-indigo, 400);
+$comics-accent : mat-palette($mat-amber);
+$comics-warn   : mat-palette($mat-red);
+$comics-theme  : mat-light-theme($comics-primary, $comics-accent, $comics-warn);
+@include angular-material-theme($comics-theme);

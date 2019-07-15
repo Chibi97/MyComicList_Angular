@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent, BrowseComicsComponent, MyListComponent } from './index';
+import { LoginComponent, RegisterComponent } from './forms/index';
+import { IndexComponent } from './home/index';
+import { BrowseComponent } from './browse/browse.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'browse', component: BrowseComicsComponent },
-  { path: 'mylist', component: MyListComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'auth', loadChildren: './authorization/authorization.module#AuthorizationModule' }
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'browse', component: BrowseComponent },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule'},
+  { path: '', component: IndexComponent}
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes)
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

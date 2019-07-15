@@ -1,0 +1,13 @@
+<mat-drawer-container class="app-drawer w-100">
+  <mat-drawer #draw class="side-navbar" mode="side" opened>
+    <mat-action-list>
+      <a mat-list-item routerLink="/admin/comics">Comics</a>
+      <a mat-list-item routerLink="/admin/authors">Authors</a>
+      <a mat-list-item routerLink="/admin/publishers">Publishers</a>
+      <a mat-list-item routerLink="/admin/genres">Genres</a>
+    </mat-action-list>
+  </mat-drawer>
+  <mat-drawer-content class="app-drawer-content">
+    <ng-content></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,34 @@
+<form [formGroup]="publisherForm" (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>Add a new publisher</h1>
+  <div mat-dialog-content>
+
+    <div class="d-block mb-3">
+      <mat-form-field class="w-100 mb-3">
+        <input formControlName="name" matInput placeholder="Name">
+        <mat-error *ngIf="publisherForm.get('name').hasError('required')">
+          The name field is required
+        </mat-error>
+        <!-- <mat-error *ngFor="let error of displayErrors('username')">
+            {{error}}
+          </mat-error> -->
+      </mat-form-field>
+    </div>
+
+    <div class="d-block">
+      <mat-form-field class="w-100 mb-3">
+        <input formControlName="origin" matInput placeholder="Origin">
+        <mat-error *ngIf="publisherForm.get('origin').hasError('required')">
+          The origin field is required
+        </mat-error>
+        <!-- <mat-error *ngFor="let error of displayErrors('username')">
+            {{error}}
+          </mat-error> -->
+      </mat-form-field>
+    </div>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button type="submit" [disabled]="!publisherForm.valid" color="primary">Add New Publisher</button>
+    <button mat-raised-button (click)="onNoClick()" color="warn">Cancel</button>
+  </div>
+</form>

@@ -1,0 +1,8 @@
+
+<app-layout>
+  <div class="container p-5">
+    <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayoutGap="10px">
+      <app-comic class="m-3" fxFlex="0 1 calc(33.3% - 10px - 2rem)" *ngFor="let comic of allComics" [comic]="comic"></app-comic>
+    </div>
+  </div>
+</app-layout>

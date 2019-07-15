@@ -1,0 +1,15 @@
+<section class="slider-wrap" [ngStyle]="{width: calculated.width}">
+  <ul #slider class="slider slider-inner" #slider>
+    <li #li *ngFor="let item of items;" class="slider-item">
+      <ng-container [ngTemplateOutlet]="item.tpl"></ng-container>
+    </li>
+  </ul>
+</section>
+
+<button mat-raised-button (click)="prev()">
+  Previous
+</button>
+
+<button mat-raised-button (click)="next()">
+  Next
+</button>

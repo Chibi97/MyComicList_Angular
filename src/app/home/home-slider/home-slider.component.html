@@ -1,0 +1,10 @@
+<div class="container p-5" fxLayout="row" fxLayoutAlign="center start">
+  <app-slider>
+    <ng-container *ngFor="let item of items;">
+      <ng-container *appSliderItem>
+        <div class="slide red" [ngStyle]="{'background-image': getImage(item)}">
+        </div>
+      </ng-container>
+    </ng-container>
+  </app-slider>
+</div>

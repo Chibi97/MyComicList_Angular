@@ -1,35 +1,50 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DashboardComponent, SliderComponent, AdvertisementComponent, FilteringComponent,
-  BrowseComicsComponent, MyListComponent
-} from './index';
+import { MaterialModule } from './material.module';
+import { AppComponent } from './app.component';
 
-import { SharedModule } from './shared/shared.module';
+import { LoginComponent, RegisterComponent } from './forms/index';
+import { LayoutComponent, FooterComponent, NavbarComponent } from './shared/index';
+import { IndexComponent, HomeFiltersComponent, HomeSliderComponent } from './home/index';
+import { SliderComponent } from './slider/slider/slider.component';
+import { SliderItemDirective } from './slider/slider-item.directive';
+import { SneakPeekComponent } from './home/sneak-peek/sneak-peek.component';
+import { ComicComponent } from './comic/comic.component';
+import { BrowseComponent } from './browse/browse.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
+    LoginComponent,
+    RegisterComponent,
+    LayoutComponent,
+    NavbarComponent,
+    FooterComponent,
+    IndexComponent,
+    HomeFiltersComponent,
+    HomeSliderComponent,
     SliderComponent,
-    AdvertisementComponent,
-    FilteringComponent,
-    BrowseComicsComponent,
-    MyListComponent
+    SliderItemDirective,
+    SneakPeekComponent,
+    ComicComponent,
+    BrowseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbModule,
-    MDBBootstrapModule,
-    SharedModule
+    MaterialModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

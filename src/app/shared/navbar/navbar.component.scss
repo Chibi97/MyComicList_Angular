@@ -1,91 +1,16 @@
-a.logo {
-  color: #666A86 !important;
-  font-family: 'Raleway', sans-serif;
-  text-transform: uppercase;
-  font-weight: 300;
-  letter-spacing: .5em;
-  font-size: 2rem;
+.logo {
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: .5em;
+    font-size: 1rem;
 }
 
-a.logo:hover {
-  color: rgba(255, 255, 255, 0.4) !important;
+.logo-img {
+    width: 30px;
+    margin-right: 1em;
 }
 
-.nav h1 {
-  display: flex;
-  align-items: center;
-}
-
-.nav li {
-  display: inline-block;
-}
-
-.navigation {
-  background: #333333;
-  width: 100%;
-}
-
-.navigation a {
-  color: white;
-  display: inline-block;
-  text-align: center;
-  font-size: 2rem;
-  padding: .7em 1em .7em 0;
-  margin-left: 1em;
-}
-
-.navigation ul {
-  padding: 1em 0;
-  overflow: hidden;
-  margin-left: auto;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 0 !important;
-}
-
-.navigation ul li {
-  position: relative;
-}
-
-.active-nav:after {
-  display: block;
-  position: absolute;
-  left: 0.5em;
-  width: 70%;
-  height: 5px;
-  background: white;
-  content: "";
-  transform: translateY(20px);
-  transition: transform ease .3s;
-}
-
-.navigation ul li:after {
-  display: block;
-  position: absolute;
-  left: 1em;
-  width: 70%;
-  height: 5px;
-  background: white;
-  content: "";
-  transform: translateY(11px);
-  transition: transform ease .3s;
-}
-
-.navigation ul li:hover:after {
-  transform: translateY(6px);
-}
-
-@media only screen and (max-width: 763px) {
-  .navigation {
-    padding: 2em 0 0;
-    justify-content: center;
-  }
-
-  .navigation ul {
-    margin-left: unset;
-  }
-
-  .navigation a {
-    font-size: 1.4rem;
-  }
+.navigation button {
+    font-size: 1rem;
 }

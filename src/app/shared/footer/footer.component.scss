@@ -1,52 +1,55 @@
+@import '../../../theme.scss';
+
+.footer-bg {
+  background: url('../../../assets/images/footer-wallp.png');
+  background-size: cover;
+}
+
 footer {
   background: #333;
-  width: 100%;
-}
-
-.footer-picture {
-  background-image: url("../../../assets/images/footer-wallp.png");
-  padding: 8em 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-position-y: 15%;
-  flex-wrap: wrap;
-}
-
-.footer-picture strong {
-  color: #7680c9;
-  font-weight: bold;
-}
-
-.disclaimer {
   color: white;
-  font-size: 1.6rem;
-  width: 12em;
-  margin-left: 5em;
-  align-self: flex-start;
-  line-height: 1em;
+
+  .disclaimer {
+    margin-left: 3.5em;
+    .fab {
+      font-size: 1.5rem;
+      color: mat-color($comics-primary);
+      margin: 1em 0;
+      padding-right: .5em;
+    }
+  }
+
+  p {
+    font-size: 1.15rem;
+  }
+
+  .links li {
+    border-bottom: 1px solid gray;
+    padding: 1em 0;
+    display: flex;
+
+    a {
+      color: white;
+      font-size: 1.1rem;
+      &:hover, &:focus {
+        color: mat-color($comics-primary);
+        font-weight: bold;
+      }
+    }
+
+  }
+  .footer-image {
+    background-image: url("../../../assets/images/footer-wallp.png");
+    padding: 4em 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-position-y: 15%;
+
+    strong {
+      color: mat-color($comics-primary);
+      font-weight: bold;
+    }
+  }
 }
 
-.links a {
-  color: white;
-  font-size: 2rem;
-}
-
-.links a:hover,
-.links a:focus {
-  color: #7680c9;
-}
-
-.links li {
-  padding-bottom: 1em;
-  border-bottom: 1px solid gray;
-  margin-bottom: 1em;
-  min-width: 20em;
-}
-
-.disclaimer .fab {
-  font-size: 2.5rem;
-  color: #7680c9;
-  margin: 1em 0;
-  padding-right: .5em;
-}
