@@ -4,6 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SharedModule } from '../shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 const authRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -17,8 +20,11 @@ const authRoutes: Routes = [
   ],
   imports: [
     CommonModule,
+    SharedModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(authRoutes),
-    SharedModule
   ],
   exports: [LoginComponent, RegisterComponent]
 })

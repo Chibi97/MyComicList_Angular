@@ -11,7 +11,6 @@ import { DashboardComponent, SliderComponent, AdvertisementComponent, FilteringC
 } from './index';
 
 import { SharedModule } from './shared/shared.module';
-import { AuthorizationModule } from './authorization/authorization.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +19,7 @@ import { AuthorizationModule } from './authorization/authorization.module';
     AdvertisementComponent,
     FilteringComponent,
     BrowseComicsComponent,
-    MyListComponent,
+    MyListComponent
   ],
   imports: [
     BrowserModule,

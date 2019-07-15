@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,6 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
 
+  }
 }
