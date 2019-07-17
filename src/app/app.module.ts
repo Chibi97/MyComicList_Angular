@@ -10,11 +10,10 @@ import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 
 import { LoginComponent, RegisterComponent } from './forms/index';
-import { LayoutComponent, FooterComponent, NavbarComponent } from './shared/index';
-import { IndexComponent, HomeFiltersComponent, HomeSliderComponent } from './home/index';
-import { SliderComponent } from './slider/slider/slider.component';
-import { SliderItemDirective } from './slider/slider-item.directive';
-import { SneakPeekComponent } from './home/sneak-peek/sneak-peek.component';
+import { LayoutComponent, FooterComponent, NavbarComponent,
+ SliderItemDirective, SliderComponent } from './shared/index';
+import { IndexComponent, HomeFiltersComponent,
+  HomeSliderComponent, SneakPeekComponent } from './home/index';
 import { ComicComponent } from './comic/comic.component';
 import { BrowseComponent } from './browse/browse.component';
 

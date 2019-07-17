@@ -13,8 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 const routes: Routes = [
   { path: '', component: DashboardComponent},
   { path: 'comics', component: ComicsComponent},
-  { path: 'publishers', component: PublishersComponent},
-  // { path: 'comics', component: DashboardComponent }
+  { path: 'publishers', component: PublishersComponent}
 ];
 
 @NgModule({
