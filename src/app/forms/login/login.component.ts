@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding, Inject, Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/core/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { isErrorResponse } from 'src/app/types/utils';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -14,8 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent implements OnInit {
   @HostBinding('class') classes = 'f-1-1';
   loginForm = this.fb.group({
-    username: ['stefan', [Validators.required]],
-    password: ['Secret123!', Validators.required]
+    username: ['oki', [Validators.required]],
+    password: ['Olja1234!', Validators.required]
   });
 
   constructor(
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           this.loginForm.controls.password.setErrors({backend: err.error.errors.Password});
         }
       } else {
-        console.error('Something enexpected happaned');
+        console.error('Something unexpected happaned');
         console.error(err.error);
       }
     });

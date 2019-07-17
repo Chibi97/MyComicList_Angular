@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Publisher } from 'src/app/types/responses';
 import { FormBuilder, Validators } from '@angular/forms';
-import { PublishersService } from 'src/app/api/publishers.service';
+import { PublishersService } from 'src/app/services/publishers.service';
 
 @Component({
   selector: 'app-publisher-form',

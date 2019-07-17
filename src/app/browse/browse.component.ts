@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ComicsService } from '../api/comics.service';
+import { ComicsService } from '../services/comics.service';
 import { Comic } from '../types/responses';
 
 @Component({

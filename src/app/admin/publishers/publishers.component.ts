@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
 import { Publisher } from 'src/app/types/responses';
-import { PublishersService } from 'src/app/api/publishers.service';
+import { PublishersService } from 'src/app/services/publishers.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PublisherFormComponent } from '../forms/publisher-form/publisher-form.component';
 import { MatTableDataSource } from '@angular/material/table';

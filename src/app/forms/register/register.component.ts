@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { AuthService } from 'src/app/core/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { isErrorResponse } from 'src/app/types/utils';
 import { HttpErrorResponse } from '@angular/common/http';
 import { JWT } from 'src/app/types/jwt';

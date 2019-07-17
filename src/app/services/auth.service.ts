@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ClientService } from '../api/client.service';
+import { ClientService } from './client.service';
 import { Credential, RegisterCredential } from '../types/credential';
 import { JWT } from '../types/jwt';
 import { User } from '../types/user';

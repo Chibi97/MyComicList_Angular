@@ -28,6 +28,12 @@ export class ClientService {
       .delete<TResponse>(`${API}/${route}`, httpOpts);
   }
 
+  put<TRequest, TResponse>(route: string, data: TRequest) {
+    const httpOpts = { headers: this.headers };
+    return this.http
+      .put<TResponse>(`${API}/${route}`, data, httpOpts);
+  }
+
   setAuthorizationHeader(token: string) {
     this.headers = this.headers.set('Authorization', token);
   }
