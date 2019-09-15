@@ -45,14 +45,23 @@ export class RegisterComponent implements OnInit {
     },
     (err: HttpErrorResponse) => {
       if (isErrorResponse(err.error)) {
-        console.log(err.error);
-        if (err.error.errors.Username) {
-          this.registerForm.controls.username.setErrors({backend: err.error.errors.Username});
+        const errors = err.error.errors;
+        const controls = this.registerForm.controls;
+
+        if (errors.Username) {
+          controls.username.setErrors({backend: errors.Username});
         }
 
-        if (err.error.errors.Password) {
-          console.log('this?');
-          this.registerForm.controls.password.setErrors({backend: err.error.errors.Password});
+        if (errors.Password) {
+          controls.password.setErrors({backend: errors.Password});
+        }
+
+        if (errors.FirstName) {
+          controls.firstName.setErrors({backend: errors.FirstName});
+        }
+
+        if (errors.LastName) {
+          controls.lastName.setErrors({backend: errors.LastName});
         }
       } else {
         console.error('Something enexpected happaned');
