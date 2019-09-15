@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ClientService } from './client.service';
 import { Credential, RegisterCredential } from '../types/credential';
-import { JWT } from '../types/jwt';
+import { JWT, Role } from '../types/jwt';
 import { User } from '../types/user';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -19,7 +19,7 @@ export class AuthService {
     .post<Credential, JWT>('auth/login', creds)
     .pipe(
       tap((r) => {
-      const user = {token: r.message, ...creds};
+      const user = {token: r.message, role: r.role, ...creds};
       localStorage.setItem('user', JSON.stringify(user));
       this.sync();
     }));
@@ -30,7 +30,7 @@ export class AuthService {
     .post<Credential, JWT>('auth/register', creds)
     .pipe(
       tap((r) => {
-        this.user = { token: r.message, ...creds };
+        this.user = { token: r.message, role: r.role, ...creds };
         localStorage.setItem('user', JSON.stringify(this.user));
       }));
   }
@@ -46,6 +46,13 @@ export class AuthService {
   logout() {
     localStorage.removeItem('user');
     this.user = null;
+  }
+
+  isAdmin() {
+    console.log('ROLE: ');
+    console.log(this.user.role);
+
+    return this.user && this.user.role === Role.Admin;
   }
 
   sync() {
