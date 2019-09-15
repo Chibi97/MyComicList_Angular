@@ -17,7 +17,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [DashboardComponent, TemplateComponent, ComicsComponent, PublishersComponent, PublisherFormComponent],
+  declarations: [
+    DashboardComponent,
+    TemplateComponent,
+    ComicsComponent,
+    PublishersComponent,
+    PublisherFormComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

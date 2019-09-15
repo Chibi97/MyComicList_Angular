@@ -11,10 +11,10 @@ import { AppComponent } from './app.component';
 
 import { LoginComponent, RegisterComponent } from './forms/index';
 import { LayoutComponent, FooterComponent, NavbarComponent,
- SliderItemDirective, SliderComponent } from './shared/index';
+  SliderItemDirective, SliderComponent } from './shared/index';
 import { IndexComponent, HomeFiltersComponent,
   HomeSliderComponent, SneakPeekComponent } from './home/index';
-import { ComicComponent } from './comic/comic.component';
+import { ComicComponent } from './shared/comic/comic.component';
 import { BrowseComponent } from './browse/browse.component';
 
 @NgModule({

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Comic } from '../types/responses';
+import { Comic } from '../../types/responses';
 
 @Component({
   selector: 'app-comic',
