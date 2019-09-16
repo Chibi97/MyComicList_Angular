@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
           this.loginForm.controls.password.setErrors({backend: err.error.errors.Password});
         }
       } else {
-        console.error('Something unexpected happaned');
+        // this.loginForm.setErrors({backend: err.error.message});
         console.error(err.error);
       }
     });

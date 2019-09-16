@@ -4,14 +4,13 @@
       <li><a routerLink='/'>Home</a></li>
       <li><a routerLink='/browse'>Browse</a></li>
       <li><a routerLink='/mylist'>My List</a></li>
+      <li *ngIf="this.auth.isAdmin()"><a routerLink='/admin'>Admin panel</a></li>
 
       <ng-container *ngIf="!auth.isLogged(); else signout">
         <li><a routerLink='/login'>Login</a></li>
         <li><a routerLink='/register'>Register</a></li>
       </ng-container>
       <ng-template #signout>
-        <!-- TODO: protect admin panel -->
-        <li><a routerLink='/admin'>Admin panel</a></li>
         <li><a (click)="logout()">Log Out</a></li>
       </ng-template>
 

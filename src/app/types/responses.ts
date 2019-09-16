@@ -4,6 +4,11 @@ export interface Publisher {
   origin: string;
 }
 
+export interface Genre {
+  id: number;
+  name: string;
+}
+
 export interface PageResponse<T> {
   currentPage: number;
   pageCount: number;
