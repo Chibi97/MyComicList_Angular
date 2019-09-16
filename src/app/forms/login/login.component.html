@@ -3,16 +3,20 @@
     <mat-card class="app-screen-form">
         <mat-card-header>
           <mat-card-title>Welcome to MyComicsList!</mat-card-title>
-          <mat-card-subtitle>Please Login</mat-card-subtitle>
-          <!-- <mat-error *ngFor="let error of displayErrors('message')">
-            {{error}}
-          </mat-error> -->
+          <mat-card-subtitle>
+            <p>
+              Please Login
+            </p>
+            <p class="py-3 error-message" *ngIf="customError !== ''">
+              {{customError}}
+            </p>
+          </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="px-2 py-3">
             <div fxLayout="column">
               <div class="d-block">
                 <mat-form-field class="w-100 mb-3">
-                  <input formControlName="username" matInput placeholder="Username">
+                  <input (input)="clearError()" formControlName="username" matInput placeholder="Username">
                   <mat-error *ngIf="loginForm.get('username').hasError('required')">
                     The username field is required
                   </mat-error>
@@ -24,7 +28,7 @@
 
               <div class="d-block">
                 <mat-form-field class="w-100">
-                  <input formControlName="password" type="password" matInput placeholder="Password">
+                  <input (input)="clearError()" formControlName="password" type="password" matInput placeholder="Password">
                   <mat-error *ngFor="let error of displayErrors('password')">
                     {{error}}
                   </mat-error>

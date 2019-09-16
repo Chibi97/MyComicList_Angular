@@ -1,0 +1,5 @@
+@import "~@angular/material/theming";
+
+$comics-primary: mat-palette($mat-indigo, 400);
+$comics-accent : mat-palette($mat-amber);
+$comics-warn   : mat-palette($mat-red);

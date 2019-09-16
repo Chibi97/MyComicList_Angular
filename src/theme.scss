@@ -14,10 +14,8 @@
   For example, the buttons have a color property that can be used like this.
 */
 @import '~@angular/material/theming';
+@import 'variables';
 @include mat-core();
 
-$comics-primary: mat-palette($mat-indigo, 400);
-$comics-accent : mat-palette($mat-amber);
-$comics-warn   : mat-palette($mat-red);
-$comics-theme  : mat-light-theme($comics-primary, $comics-accent, $comics-warn);
+$comics-theme: mat-light-theme($comics-primary, $comics-accent, $comics-warn);
 @include angular-material-theme($comics-theme);

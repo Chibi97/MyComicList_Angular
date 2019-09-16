@@ -13,6 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
   @HostBinding('class') classes = 'f-1-1';
+
+  customError = '';
   loginForm = this.fb.group({
     username: ['oki', [Validators.required]],
     password: ['Olja1234!', Validators.required]
@@ -43,6 +45,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  clearError() {
+    if (this.customError !== '') {
+      this.customError = '';
+    }
+  }
+
   onSubmit() {
     const {username, password} = this.loginForm.value;
     this.auth.login({
@@ -60,9 +68,11 @@ export class LoginComponent implements OnInit {
         if (err.error.errors.Password) {
           this.loginForm.controls.password.setErrors({backend: err.error.errors.Password});
         }
+
       } else {
-        // this.loginForm.setErrors({backend: err.error.message});
-        console.error(err.error);
+        this.customError = err.error.message;
+        this.loginForm.controls.username.setErrors({invalid: true});
+        this.loginForm.controls.password.setErrors({invalid: true});
       }
     });
   }
