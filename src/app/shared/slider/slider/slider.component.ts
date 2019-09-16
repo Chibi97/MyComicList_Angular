@@ -1,5 +1,5 @@
 import { Component, ContentChildren, QueryList, ViewChildren, ElementRef, AfterViewInit,
-   Input, ViewChild, HostListener, OnInit } from '@angular/core';
+   Input, ViewChild, HostListener, OnInit, AfterContentInit } from '@angular/core';
 import { SliderItemDirective } from '../slider-item.directive';
 import { AnimationBuilder, animate, style, AnimationPlayer } from '@angular/animations';
 
@@ -8,7 +8,7 @@ import { AnimationBuilder, animate, style, AnimationPlayer } from '@angular/anim
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss']
 })
-export class SliderComponent implements AfterViewInit {
+export class SliderComponent implements AfterViewInit, AfterContentInit {
 
   @ContentChildren(SliderItemDirective) items: QueryList<SliderItemDirective>;
   @ViewChildren('li') itemElements: QueryList<ElementRef>;
@@ -26,6 +26,19 @@ export class SliderComponent implements AfterViewInit {
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
     this.recalculateBounds();
+  }
+
+  ngAfterContentInit() {
+    setInterval( () => {
+    this.currentSlide++;
+    if (this.currentSlide > this.items.length - 1) {
+      this.currentSlide = 0;
+    }
+    const offset = this.currentSlide * this.itemWidth;
+    const myAnimation = this.buildAnimation(offset);
+    this.player = myAnimation.create(this.slider.nativeElement);
+    this.player.play();
+    }, 4000);
   }
 
   ngAfterViewInit() {
@@ -49,6 +62,7 @@ export class SliderComponent implements AfterViewInit {
   }
 
   next() {
+    clearInterval();
     this.currentSlide++;
     if (this.currentSlide > this.items.length - 1) {
       this.currentSlide = 0;
@@ -60,6 +74,7 @@ export class SliderComponent implements AfterViewInit {
   }
 
   prev() {
+    clearInterval();
     this.currentSlide--;
     if (this.currentSlide < 0) {
       this.currentSlide = this.items.length - 1;
