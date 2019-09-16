@@ -22,6 +22,7 @@ export class SliderComponent implements AfterViewInit, AfterContentInit {
   calculated = { 'max-width': '' };
   currentSlide = 0;
   player: AnimationPlayer;
+  interval: any;
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {
@@ -29,16 +30,10 @@ export class SliderComponent implements AfterViewInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
-    setInterval( () => {
-    this.currentSlide++;
-    if (this.currentSlide > this.items.length - 1) {
-      this.currentSlide = 0;
-    }
-    const offset = this.currentSlide * this.itemWidth;
-    const myAnimation = this.buildAnimation(offset);
-    this.player = myAnimation.create(this.slider.nativeElement);
-    this.player.play();
-    }, 4000);
+    this.interval =
+      setInterval( () => {
+        this.next();
+      }, 4000);
   }
 
   ngAfterViewInit() {
@@ -62,7 +57,7 @@ export class SliderComponent implements AfterViewInit, AfterContentInit {
   }
 
   next() {
-    clearInterval();
+    clearInterval(this.interval);
     this.currentSlide++;
     if (this.currentSlide > this.items.length - 1) {
       this.currentSlide = 0;
@@ -71,10 +66,14 @@ export class SliderComponent implements AfterViewInit, AfterContentInit {
     const myAnimation = this.buildAnimation(offset);
     this.player = myAnimation.create(this.slider.nativeElement);
     this.player.play();
+    this.interval =
+      setInterval(() => {
+        this.next();
+      }, 4000);
   }
 
   prev() {
-    clearInterval();
+    clearInterval(this.interval);
     this.currentSlide--;
     if (this.currentSlide < 0) {
       this.currentSlide = this.items.length - 1;
@@ -84,5 +83,9 @@ export class SliderComponent implements AfterViewInit, AfterContentInit {
     const myAnimation = this.buildAnimation(offset);
     this.player = myAnimation.create(this.slider.nativeElement);
     this.player.play();
+    this.interval =
+      setInterval(() => {
+        this.next();
+      }, 4000);
   }
 }

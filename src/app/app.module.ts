@@ -13,7 +13,7 @@ import { LoginComponent, RegisterComponent } from './forms/index';
 import { LayoutComponent, FooterComponent, NavbarComponent,
   SliderItemDirective, SliderComponent } from './shared/index';
 import { IndexComponent, HomeFiltersComponent,
-  HomeSliderComponent, SneakPeekComponent } from './home/index';
+  HomeSliderComponent } from './home/index';
 import { ComicComponent } from './shared/comic/comic.component';
 import { BrowseComponent } from './browse/browse.component';
 
@@ -30,7 +30,6 @@ import { BrowseComponent } from './browse/browse.component';
     HomeSliderComponent,
     SliderComponent,
     SliderItemDirective,
-    SneakPeekComponent,
     ComicComponent,
     BrowseComponent
   ],
