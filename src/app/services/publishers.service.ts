@@ -18,6 +18,11 @@ export class PublishersService {
     return this.client.post('publishers', publisher);
   }
 
+  editPublisher(publisher: Publisher) {
+    const {id, ...other} = publisher;
+    return this.client.put(`publishers/${id}`, other);
+  }
+
   deletePublisher(publisherId: number) {
     return this.client.delete(`publishers/${publisherId}`);
   }

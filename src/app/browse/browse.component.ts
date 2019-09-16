@@ -9,6 +9,8 @@ import { Comic } from '../types/responses';
 })
 export class BrowseComponent implements OnInit {
   allComics: Comic[] = [];
+  pagiLength = 1;
+  pageSize = 1;
   constructor(private service: ComicsService) { }
 
   ngOnInit() {
@@ -18,6 +20,8 @@ export class BrowseComponent implements OnInit {
   getComics() {
     this.service.getComics().subscribe((comics) => {
       this.allComics = comics.data;
+      this.pagiLength = comics.totalCount;
+      this.pageSize = comics.perPage;
     });
   }
 

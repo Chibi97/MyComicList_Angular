@@ -9,6 +9,7 @@ import { Comic } from 'src/app/types/responses';
 })
 export class HomeSliderComponent implements OnInit {
   items: Comic[] = [];
+  screenWidth: any;
 
   constructor(private service: ComicsService) { }
 

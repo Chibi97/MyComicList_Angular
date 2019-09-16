@@ -15,21 +15,43 @@ export class PublisherFormComponent {
     origin: ['', Validators.required]
   });
 
+  btnText: string;
+  mode: 'Edit'|'New';
+
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<PublisherFormComponent>,
     private service: PublishersService,
     @Inject(MAT_DIALOG_DATA) private data: Publisher
-  ) { }
+  ) {
+    if (data) {
+      this.publisherForm.setValue({
+        name: data.name,
+        origin: data.origin
+      });
+      this.mode = 'Edit';
+      this.btnText = 'Update Publisher';
+    } else {
+      this.mode = 'New';
+      this.btnText = 'Add New Publisher';
+    }
+   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onSubmit() {
-    this.service.addNewPublisher(this.publisherForm.value)
-      .subscribe(() => {
-        this.dialogRef.close();
-      });
+    if (this.mode === 'New') {
+      this.service.addNewPublisher(this.publisherForm.value)
+        .subscribe(() => {
+          this.dialogRef.close();
+        });
+    } else if (this.mode === 'Edit') {
+      this.service.editPublisher({...this.publisherForm.value, id: this.data.id})
+        .subscribe(() => {
+          this.dialogRef.close();
+        });
+    }
   }
 }

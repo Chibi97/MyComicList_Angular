@@ -11,8 +11,7 @@
             <button mat-button routerLink='/register'>Register</button>
         </ng-container>
         <ng-template #signout>
-            <!-- TODO: protect admin panel -->
-            <button *ngIf="true" mat-button routerLink='/admin'>Admin panel</button>
+            <button *ngIf="this.auth.isAdmin()" mat-button routerLink='/admin'>Admin panel</button>
             <button mat-button (click)="logout()">Log Out</button>
         </ng-template>
     </mat-toolbar-row>

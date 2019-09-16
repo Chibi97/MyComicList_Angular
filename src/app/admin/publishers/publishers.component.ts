@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
 import { Publisher } from 'src/app/types/responses';
 import { PublishersService } from 'src/app/services/publishers.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PublisherFormComponent } from '../forms/publisher-form/publisher-form.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -23,11 +23,24 @@ export class PublishersComponent implements OnInit {
 
   constructor(private service: PublishersService,
               public dialog: MatDialog,
-              private snack: MatSnackBar) { }
+              private snack: MatSnackBar) {
+  }
 
-  openDialog() {
-    this.dialog.open(PublisherFormComponent, {minWidth: '25rem'})
-      .afterClosed().subscribe(this.reloadData.bind(this));
+  openDialog(mode: 'new'|'edit', data: Publisher = null) {
+    let dialogRef: MatDialogRef<PublisherFormComponent, any>;
+    if (mode === 'new') {
+      dialogRef = this.dialog.open(PublisherFormComponent, {minWidth: '25rem'});
+    } else {
+      dialogRef = this.dialog.open(PublisherFormComponent, {data});
+    }
+
+    dialogRef
+      .afterClosed()
+      .subscribe(this.reloadData.bind(this));
+  }
+
+  addNew() {
+    this.openDialog('new');
   }
 
   ngOnInit() {
@@ -46,6 +59,10 @@ export class PublishersComponent implements OnInit {
           {duration: 2000, verticalPosition: 'top'});
         this.reloadData();
       });
+  }
+
+  edit(publisher: Publisher) {
+    this.openDialog('edit', publisher);
   }
 
   private reloadData() {

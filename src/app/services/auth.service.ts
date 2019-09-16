@@ -49,9 +49,6 @@ export class AuthService {
   }
 
   isAdmin() {
-    console.log('ROLE: ');
-    console.log(this.user.role);
-
     return this.user && this.user.role === Role.Admin;
   }
 

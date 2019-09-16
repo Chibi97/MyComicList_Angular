@@ -40,7 +40,7 @@
             <th class="text-align-center" mat-header-cell *matHeaderCellDef>Actions</th>
             <td class="text-align-center" mat-cell *matCellDef="let element">
               <span class="mr-2">
-                <button mat-icon-button>
+                <button mat-icon-button (click)="edit(element)">
                   <mat-icon color="primary">edit</mat-icon>
                 </button>
               </span>

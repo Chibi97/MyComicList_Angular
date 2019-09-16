@@ -1,6 +1,7 @@
-import { Component, ContentChildren, QueryList, ViewChildren, ElementRef, AfterViewInit, Directive, Input, ViewChild } from '@angular/core';
+import { Component, ContentChildren, QueryList, ViewChildren,
+   ElementRef, AfterViewInit, Input, ViewChild, HostListener } from '@angular/core';
 import { SliderItemDirective } from '../slider-item.directive';
-import { AnimationFactory, AnimationBuilder, animate, style, AnimationPlayer } from '@angular/animations';
+import { AnimationBuilder, animate, style, AnimationPlayer } from '@angular/animations';
 
 @Component({
   selector: 'app-slider',
@@ -15,12 +16,15 @@ export class SliderComponent implements AfterViewInit {
   @Input() timing = '500ms ease-in';
   @Input() showControls = true;
 
-  constructor(private builder: AnimationBuilder) { }
+  constructor(private builder: AnimationBuilder) {
+    this.getScreenSize();
+   }
 
   itemWidth = 0;
   calculated = {width: ''};
   currentSlide = 0;
   player: AnimationPlayer;
+  screenWidth: any;
 
   ngAfterViewInit() {
     this.itemElements.changes.subscribe(() => {
@@ -28,11 +32,17 @@ export class SliderComponent implements AfterViewInit {
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    this.screenWidth = window.innerWidth;
+    console.log(this.screenWidth);
+  }
+
   recalculateBounds() {
     setTimeout(() => {
-      const itemWidth = this.itemElements.first.nativeElement.getBoundingClientRect().width;
-      this.calculated.width = `${itemWidth}px`;
-      this.itemWidth = itemWidth;
+      // const itemWidth = this.itemElements.first.nativeElement.getBoundingClientRect().width;
+      this.calculated.width = `${this.screenWidth}px`;
+      this.itemWidth = this.screenWidth;
     });
   }
 

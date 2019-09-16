@@ -28,7 +28,9 @@
 
   </div>
   <div mat-dialog-actions>
-    <button mat-raised-button type="submit" [disabled]="!publisherForm.valid" color="primary">Add New Publisher</button>
-    <button mat-raised-button (click)="onNoClick()" color="warn">Cancel</button>
+    <button mat-raised-button type="submit" [disabled]="!publisherForm.valid" color="primary">
+      {{btnText}}
+    </button>
+    <button mat-raised-button type="button" (click)="onNoClick()" color="warn">Cancel</button>
   </div>
 </form>
