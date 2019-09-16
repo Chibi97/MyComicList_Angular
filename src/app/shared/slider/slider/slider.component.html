@@ -1,17 +1,11 @@
-<div class="slider-wrapper">
-  <section class="slider-wrap" [ngStyle]="{width: calculated.width}">
+<div (window:resize)="onResize($event)" class="slider-wrapper">
+  <i class="fas fa-chevron-left" mat-raised-button (click)="prev()"></i>
+  <section class="slider-wrap" [ngStyle]="{'max-width': calculated.width}">
     <ul #slider class="slider slider-inner" #slider>
       <li #li *ngFor="let item of items;" class="slider-item">
         <ng-container [ngTemplateOutlet]="item.tpl"></ng-container>
       </li>
     </ul>
   </section>
+  <i class="fas fa-chevron-right" mat-raised-button (click)="next()"></i>
 </div>
-
-<button mat-raised-button (click)="prev()">
-  Previous
-</button>
-
-<button mat-raised-button (click)="next()">
-  Next
-</button>
