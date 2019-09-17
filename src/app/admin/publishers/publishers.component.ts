@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { rowsAnimation } from 'src/app/animations';
+import { rowsAnimation } from '../../shared/animations/index';
 
 @Component({
   selector: 'app-publishers',

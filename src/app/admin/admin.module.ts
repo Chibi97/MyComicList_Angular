@@ -9,7 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { PublishersComponent } from './publishers/publishers.component';
 import { PublisherFormComponent } from './forms/publisher-form/publisher-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LimitWordsPipe } from '../pipes/limit-words';
+import { LimitWordsPipe } from '../shared/pipes/limit-words';
 import { ComicPreviewComponent } from './comic-preview/comic-preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

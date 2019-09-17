@@ -11,7 +11,7 @@ import { ComicsService } from 'src/app/services/comics.service';
 import { ComicsDataSource } from './comics-data-source';
 import { tap } from 'rxjs/operators';
 import { ComicPreviewComponent } from '../comic-preview/comic-preview.component';
-import { rowsAnimation } from 'src/app/animations';
+import { rowsAnimation } from '../../shared/animations/index';
 
 @Component({
   selector: 'app-comics',

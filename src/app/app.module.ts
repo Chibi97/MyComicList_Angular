@@ -16,6 +16,7 @@ import { IndexComponent, HomeFiltersComponent,
   HomeSliderComponent } from './home/index';
 import { ComicComponent } from './shared/comic/comic.component';
 import { BrowseComponent } from './browse/browse.component';
+import { RegexDirective } from './shared/validators/regex.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BrowseComponent } from './browse/browse.component';
     SliderComponent,
     SliderItemDirective,
     ComicComponent,
-    BrowseComponent
+    BrowseComponent,
+    RegexDirective
   ],
   imports: [
     BrowserModule,
