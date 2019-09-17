@@ -7,11 +7,15 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { rowsAnimation } from 'src/app/animations';
 
 @Component({
   selector: 'app-publishers',
   templateUrl: './publishers.component.html',
-  styleUrls: ['./publishers.component.scss']
+  styleUrls: ['./publishers.component.scss'],
+  animations: [
+    rowsAnimation
+  ]
 })
 export class PublishersComponent implements OnInit {
   @HostBinding('class') classes = 'f-1-1 d-flex';
