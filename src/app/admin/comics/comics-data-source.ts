@@ -26,15 +26,13 @@ export class ComicsDataSource implements DataSource<Comic> {
     }
 
     loadComics(page = 1, pageSize = 5) {
-        // this.loadingSubject.next(true);
+        this.loadingSubject.next(true);
 
-        console.log('loading... PAGE: ' + page);
-        this.comicService.getComics()
+        this.comicService.getComics(page, pageSize)
             .pipe(finalize(() => {
                 this.loadingSubject.next(false);
             }))
             .subscribe(comics => {
-                console.log('Done!');
                 this.lengthSubject.next(comics.totalCount);
                 this.comicsSubject.next(comics.data);
             });

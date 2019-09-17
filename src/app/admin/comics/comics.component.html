@@ -3,9 +3,9 @@
     <mat-card>
       <mat-card-title>
         <div fxLayout="row">
-          Publishers
+          Comics
           <button (click)="openDialog()" class="ml-auto" mat-raised-button color="primary">
-            Add New
+            Add New [WIP]
           </button>
         </div>
       </mat-card-title>
@@ -20,21 +20,43 @@
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
 
-        <div fxLayout="row" fxLayoutAlign="center center" class="spinner-container" *ngIf="dataSource.loading$ | async; else elseTemplate">
+        <div fxLayout="row" fxLayoutAlign="center center" class="spinner-container" *ngIf="dataSource.loading$ | async">
           <mat-spinner></mat-spinner>
         </div>
-        <ng-template #elseTemplate>
-          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-0 w-100">
+
+          <table [hidden]="dataSource.loading$ | async" mat-table [dataSource]="dataSource" matSort class="mat-elevation-0 w-100">
             <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+              <th mat-header-cell *matHeaderCellDef> ID </th>
               <td mat-cell *matCellDef="let element">{{element.id}}</td>
             </ng-container>
-  
+
+            <ng-container matColumnDef="imageIcon">
+              <th mat-header-cell *matHeaderCellDef>Image</th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button>
+                  <mat-icon color="primary" (click)="openImageDialog(element)">image</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
             <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <th mat-header-cell *matHeaderCellDef>Name</th>
               <td mat-cell *matCellDef="let element">{{element.name}}</td>
             </ng-container>
-  
+
+            <ng-container matColumnDef="issues">
+              <th mat-header-cell *matHeaderCellDef>Issues</th>
+              <td mat-cell *matCellDef="let element">{{element.issues}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let element">{{element.description | limitWords: 30}}...
+                <button mat-button href="#">full description</button>
+              </td>
+            </ng-container>
+
             <ng-container matColumnDef="actions">
               <th class="text-align-center" mat-header-cell *matHeaderCellDef>Actions</th>
               <td class="text-align-center" mat-cell *matCellDef="let element">
@@ -50,18 +72,14 @@
                 </span>
               </td>
             </ng-container>
-  
-  
+
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-        </ng-template>
-        
 
-        
-
-        <mat-paginator [length]="dataSource.length$ | async" 
-        [pageSize]="5" 
+        <mat-paginator [length]="dataSource.length$ | async"
+        [pageSize]="5"
         [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
       </mat-card-content>
     </mat-card>
