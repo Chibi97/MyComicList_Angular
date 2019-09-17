@@ -6,7 +6,7 @@
         <mat-card-content>
           <h2 class="example-h2">Browse by filters</h2>
           <section class="example-section">
-            <mat-checkbox class="example-margin" *ngFor="let g of this.allGenres">{{g.name}}</mat-checkbox>
+            <mat-checkbox (change)="selectFilter($event)" class="example-margin" *ngFor="let g of this.allGenres" [value]="g.id">{{g.name}}</mat-checkbox>
           </section>
         </mat-card-content>
       </mat-card>
@@ -18,7 +18,7 @@
         <app-comic class="m-3" fxFlex="0 1 calc(33.3% - 10px - 2rem)" *ngFor="let comic of allComics" [comic]="comic">
         </app-comic>
       </div>
-      <mat-paginator [length]="this.pagiLength" [pageSize]="this.pageSize"></mat-paginator>
+      <mat-paginator (page)="fetchData($event)" [length]="totalCount" [pageSize]="pageSize"></mat-paginator>
     </ng-container>
     <ng-template #elseTemplate>
       <h1>No Data has been loaded</h1>

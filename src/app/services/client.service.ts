@@ -12,8 +12,12 @@ export class ClientService {
   constructor(private http: HttpClient) { }
 
   get<TResponse>(route: string, params: any = {}) {
-    const httpOpts = { params, headers: this.headers};
-    return this.http.get<TResponse>(`${API}/${route}`, httpOpts);
+    console.log(route);
+    console.log(params);
+    return this.http.get<TResponse>(`${API}/${route}`, {
+      headers: this.headers,
+      params
+    });
   }
 
   post<TRequest, TResponse>(route: string, data: TRequest) {

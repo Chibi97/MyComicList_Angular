@@ -3,6 +3,8 @@ import { ClientService } from './client.service';
 import { Comic, PageResponse } from '../types/responses';
 import { tap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +13,19 @@ export class ComicsService {
 
   constructor(private client: ClientService) { }
 
-  getComics(pageNumber = 1, perPage = 6, filters = {}) {
-    return this.client.get<PageResponse<Comic>>(`comics?page=${pageNumber}&perPage=${perPage}`, {})
+  getComics(pageNumber = 1, perPage = 3, filters = []) {
+    let httpParams = new HttpParams();
+    filters.forEach(filter => {
+      const name = filter.name;
+      filter.values.forEach(val => {
+        httpParams = httpParams.append(name, val);
+      });
+    });
+
+    httpParams = httpParams.set('page', '' + pageNumber);
+    httpParams = httpParams.set('perPage', '' + perPage);
+
+    return this.client.get<PageResponse<Comic>>('comics', httpParams)
       .pipe(
         map(resp => this.picturesProtocol(resp)),
         map(resp => {
