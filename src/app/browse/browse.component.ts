@@ -11,7 +11,7 @@ import { GenresService } from '../services/genres.service';
 export class BrowseComponent implements OnInit {
   allComics: Comic[] = [];
   allGenres: Genre[] = [];
-  pagiLength = 1;
+  totalCount = 1;
   pageSize = 1;
   constructor(private comicService: ComicsService, private genreService: GenresService) { }
 
@@ -29,7 +29,6 @@ export class BrowseComponent implements OnInit {
   getComics() {
     this.comicService.getComics().subscribe((comics) => {
       this.allComics = comics.data;
-      this.pagiLength = comics.totalCount;
       this.pageSize = comics.perPage;
     });
   }

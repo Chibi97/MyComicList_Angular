@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'MyComicList';
+  title = 'Comicology';
 
   constructor(private auth: AuthService, private router: Router) { }
 

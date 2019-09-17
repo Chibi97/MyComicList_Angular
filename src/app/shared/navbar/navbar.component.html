@@ -1,11 +1,12 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row class="navigation">
         <img src="../../../assets/images/favicon.ico" alt="logo" class="logo-img" />
-        <span class="text-uppercase logo">MyComicList</span>
+        <span class="text-uppercase logo">
+            <a routerLink="/">Comicology</a>
+        </span>
         <span class="spacer"></span>
         <button mat-button routerLink='/'>Home</button>
         <button mat-button routerLink='/browse'>Browse</button>
-        <button mat-button routerLink='/mylist'>My List</button>
         <ng-container *ngIf="!auth.isLogged(); else signout">
             <button mat-button routerLink='/login'>Log in</button>
             <button mat-button routerLink='/register'>Register</button>

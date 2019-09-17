@@ -3,7 +3,6 @@
     <ul fxFlex="18em" class="links">
       <li><a routerLink='/'>Home</a></li>
       <li><a routerLink='/browse'>Browse</a></li>
-      <li><a routerLink='/mylist'>My List</a></li>
       <li *ngIf="this.auth.isAdmin()"><a routerLink='/admin'>Admin panel</a></li>
 
       <ng-container *ngIf="!auth.isLogged(); else signout">

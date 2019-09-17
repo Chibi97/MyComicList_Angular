@@ -12,19 +12,19 @@ class HttpClient {
             });
         } else {
             return new Observable<Comic>(subscriber => {
-                setTimeout(() => {
-                    subscriber.next({
-                        id: 1,
-                        name: 'Foo',
-                        authors: [],
-                        description: 'Blaa',
-                        genres: [],
-                        issues: 10,
-                        pictures: [],
-                        publishedAt: new Date(),
-                        publisher: 'Baz'
-                    });
-                }, 1000);
+                // setTimeout(() => {
+                //     subscriber.next({
+                //         id: 1,
+                //         name: 'Foo',
+                //         authors: [],
+                //         description: 'Blaa',
+                //         genres: [],
+                //         issues: 10,
+                //         pictures: [],
+                //         publishedAt: new Date(),
+                //         publisher: 'Baz'
+                //     });
+                // }, 1000);
             });
         }
     }

@@ -11,7 +11,7 @@ export class ComicsService {
 
   constructor(private client: ClientService) { }
 
-  getComics(pageNumber = 1, perPage = 5, filters = {}) {
+  getComics(pageNumber = 1, perPage = 6, filters = {}) {
     return this.client.get<PageResponse<Comic>>(`comics?page=${pageNumber}&perPage=${perPage}`, {})
       .pipe(
         map(resp => this.picturesProtocol(resp)),

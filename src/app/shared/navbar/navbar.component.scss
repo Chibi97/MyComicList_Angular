@@ -1,9 +1,13 @@
-.logo {
-    font-family: 'Raleway', sans-serif;
-    text-transform: uppercase;
-    font-weight: 300;
-    letter-spacing: .5em;
-    font-size: 1rem;
+.logo a {
+    font-family: 'Lobster', cursive;
+    text-transform: capitalize;
+    color: white;
+    font-size: 1.5rem;
+
+}
+
+.logo a:focus {
+    color: white;
 }
 
 .logo-img {
@@ -12,5 +16,7 @@
 }
 
 .navigation button {
-    font-size: 1rem;
+    font-family: 'Bangers', cursive;
+    font-size: 1.1rem;
+    letter-spacing: .1em;
 }
