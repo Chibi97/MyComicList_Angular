@@ -4,6 +4,8 @@
     margin: 1em 2em;
 
     .browse-filters {
+      margin-right: 1em;
+      width: 50rem;
         .headline {
             font-size: 1em;
             font-weight: bold;
@@ -12,6 +14,10 @@
             color: #5c6bc0;
             text-transform: uppercase;
         }
+    }
+
+    .thecomic {
+      margin: 0 1em;
     }
 
     .filters {

@@ -1,6 +1,6 @@
 <section class='section-filter' fx-Layout="row" fxLayoutAlign="center">
   <article class='sf-article'>
     <h3>BROWSE BY FILTERS</h3>
-      <a *ngFor="let g of this.genres" [routerLink]="['/browse']" class='filter'>{{g.name}}</a>
+      <a *ngFor="let g of this.genres" [routerLink]="['/browse/filter', g.id]" class='filter'>{{g.name}}</a>
   </article>
 </section>

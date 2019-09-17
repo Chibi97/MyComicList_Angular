@@ -8,7 +8,8 @@ import { AdminActivator } from './services/admin-activator.service';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'browse', component: BrowseComponent },
+  { path: 'browse', component: BrowseComponent},
+  { path: 'browse/filter/:genreId', component: BrowseComponent},
   { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [AdminActivator]},
   { path: '', component: IndexComponent}
 ];

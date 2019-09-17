@@ -1,32 +1,46 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { ComicsService } from '../services/comics.service';
 import { Comic, Genre } from '../types/responses';
 import { GenresService } from '../services/genres.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-browse',
   templateUrl: './browse.component.html',
   styleUrls: ['./browse.component.scss']
 })
-export class BrowseComponent implements OnInit, AfterViewInit {
+export class BrowseComponent implements OnInit, OnDestroy {
   allComics: Comic[] = [];
   allGenres: Genre[] = [];
   selectedGenres: number[] = [];
   totalCount = 1;
   pageSize = 1;
+  routerSub: any;
+  selectedFilter: number;
 
   constructor(
     private comicService: ComicsService,
-    private genreService: GenresService) { }
+    private genreService: GenresService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getComics();
     this.getGenres();
+    this.routerSub = this.route.params.subscribe(params => {
+      if (params.genreId) {
+        this.selectedFilter = +params.genreId;
+        this.fetchDataWithSelectedFilter();
+      } else {
+        this.selectedFilter = null;
+        this.getComics();
+      }
+    });
   }
 
-  ngAfterViewInit(): void {}
+  ngOnDestroy(): void {
+    this.routerSub.unsubscribe();
+  }
 
   getGenres() {
     this.genreService.getGenres().subscribe((genres) => {
@@ -62,6 +76,20 @@ export class BrowseComponent implements OnInit, AfterViewInit {
     }
 
     this.getComics(1);
+  }
+
+  fetchDataWithSelectedFilter() {
+    if (this.selectFilter) {
+      this.selectedGenres.push(this.selectedFilter);
+      this.getComics(1);
+    }
+  }
+
+  isChecked(genreId: number) {
+    if (this.selectedFilter === genreId) {
+      return true;
+    }
+    return false;
   }
 
 }
