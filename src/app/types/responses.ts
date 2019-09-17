@@ -27,4 +27,5 @@ export interface Comic {
   genres: string[];
   authors: string[];
   pictures: string[];
+  image: string;
 }

@@ -20,43 +20,49 @@
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
 
-        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-0 w-100">
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-            <td mat-cell *matCellDef="let element">{{element.id}}</td>
-          </ng-container>
+        <div fxLayout="row" fxLayoutAlign="center center" class="spinner-container" *ngIf="dataSource.loading$ | async; else elseTemplate">
+          <mat-spinner></mat-spinner>
+        </div>
+        <ng-template #elseTemplate>
+          <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-0 w-100">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+              <td mat-cell *matCellDef="let element">{{element.id}}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let element">{{element.name}}</td>
+            </ng-container>
+  
+            <ng-container matColumnDef="actions">
+              <th class="text-align-center" mat-header-cell *matHeaderCellDef>Actions</th>
+              <td class="text-align-center" mat-cell *matCellDef="let element">
+                <span class="mr-2">
+                  <button mat-icon-button>
+                    <mat-icon color="primary">edit</mat-icon>
+                  </button>
+                </span>
+                <span>
+                  <button mat-icon-button (click)="delete(element.id)">
+                    <mat-icon color="warn">delete</mat-icon>
+                  </button>
+                </span>
+              </td>
+            </ng-container>
+  
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </ng-template>
+        
 
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-            <td mat-cell *matCellDef="let element">{{element.name}}</td>
-          </ng-container>
+        
 
-          <ng-container matColumnDef="origin">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Origin</th>
-            <td mat-cell *matCellDef="let element">{{element.origin}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="actions">
-            <th class="text-align-center" mat-header-cell *matHeaderCellDef>Actions</th>
-            <td class="text-align-center" mat-cell *matCellDef="let element">
-              <span class="mr-2">
-                <button mat-icon-button>
-                  <mat-icon color="primary">edit</mat-icon>
-                </button>
-              </span>
-              <span>
-                <button mat-icon-button (click)="delete(element.id)">
-                  <mat-icon color="warn">delete</mat-icon>
-                </button>
-              </span>
-            </td>
-          </ng-container>
-
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-        <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [length]="dataSource.length$ | async" 
+        [pageSize]="5" 
+        [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
       </mat-card-content>
     </mat-card>
   </div>

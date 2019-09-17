@@ -11,10 +11,16 @@ export class ComicsService {
 
   constructor(private client: ClientService) { }
 
-  getComics() {
-    return this.client.get<PageResponse<Comic>>('comics', {})
+  getComics(pageNumber = 1, perPage = 5, filters = {}) {
+    return this.client.get<PageResponse<Comic>>(`comics?page=${pageNumber}&perPage=${perPage}`, {})
       .pipe(
         map(resp => this.picturesProtocol(resp)),
+        map(resp => {
+          resp.data = resp.data.map(comic => {
+            return {...comic, image: comic.pictures[0]};
+          });
+          return resp;
+        }),
         catchError(_ => {
           const pr: PageResponse<Comic> = {
             currentPage: 0,

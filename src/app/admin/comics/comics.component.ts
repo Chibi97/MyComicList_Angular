@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, ViewChild } from '@angular/core';
+import { Component, OnInit, HostBinding, ViewChild, AfterViewInit } from '@angular/core';
 import { Comic } from 'src/app/types/responses';
 import { PublishersService } from 'src/app/services/publishers.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,19 +8,21 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComicsService } from 'src/app/services/comics.service';
+import { ComicsDataSource } from './comics-data-source';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-comics',
   templateUrl: './comics.component.html',
   styleUrls: ['./comics.component.scss']
 })
-export class ComicsComponent implements OnInit {
+export class ComicsComponent implements OnInit, AfterViewInit {
   @HostBinding('class') classes = 'f-1-1 d-flex';
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  dataSource: MatTableDataSource<Comic>;
-  displayedColumns = ['id', 'image', 'name', 'description', 'issues', 'authors', 'genres', 'publisher'];
+  dataSource: ComicsDataSource;
+  displayedColumns = ['id', 'name'];
 
   constructor(private service: ComicsService,
               public dialog: MatDialog,
@@ -32,12 +34,19 @@ export class ComicsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource<Comic>([]);
-    // this.reloadData();
+    this.dataSource = new ComicsDataSource(this.service);
+    this.dataSource.loadComics();
+  }
+
+  ngAfterViewInit(): void {
+    this.paginator.page
+      .subscribe(() => {
+        this.dataSource.loadComics(this.paginator.pageIndex + 1);
+      });
   }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    // this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   // delete(id: number) {

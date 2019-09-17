@@ -48,6 +48,8 @@ export class LoginComponent implements OnInit {
   clearError() {
     if (this.customError !== '') {
       this.customError = '';
+      this.loginForm.controls.username.setErrors(null);
+      this.loginForm.controls.password.setErrors(null);
     }
   }
 
