@@ -10,6 +10,7 @@ import { PublishersComponent } from './publishers/publishers.component';
 import { PublisherFormComponent } from './forms/publisher-form/publisher-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LimitWordsPipe } from '../pipes/limit-words';
+import { ComicPreviewComponent } from './comic-preview/comic-preview.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
     ComicsComponent,
     PublishersComponent,
     PublisherFormComponent,
-    LimitWordsPipe
+    LimitWordsPipe,
+    ComicPreviewComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ const routes: Routes = [
     ReactiveFormsModule
   ],
   entryComponents: [
-    PublisherFormComponent
+    PublisherFormComponent,
+    ComicPreviewComponent
   ],
   exports: [DashboardComponent]
 })

@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComicsService } from 'src/app/services/comics.service';
 import { ComicsDataSource } from './comics-data-source';
 import { tap } from 'rxjs/operators';
+import { ComicPreviewComponent } from '../comic-preview/comic-preview.component';
 
 @Component({
   selector: 'app-comics',
@@ -25,12 +26,11 @@ export class ComicsComponent implements OnInit, AfterViewInit {
   displayedColumns = ['id', 'imageIcon', 'name', 'description', 'issues', 'actions'];
 
   constructor(private service: ComicsService,
-              public dialog: MatDialog,
+              public imgDialog: MatDialog,
               private snack: MatSnackBar) { }
 
-  openDialog() {
-    // this.dialog.open(PublisherFormComponent, { minWidth: '25rem' })
-    //  .afterClosed().subscribe(this.reloadData.bind(this));
+  openImageDialog(comic: Comic) {
+    this.imgDialog.open(ComicPreviewComponent, {data: comic, width: '40rem'});
   }
 
   ngOnInit() {
