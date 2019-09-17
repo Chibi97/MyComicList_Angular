@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { PublishersComponent } from './publishers/publishers.component';
 import { PublisherFormComponent } from './forms/publisher-form/publisher-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LimitWordsPipe } from '../pipes/limit-words';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
     TemplateComponent,
     ComicsComponent,
     PublishersComponent,
-    PublisherFormComponent
+    PublisherFormComponent,
+    LimitWordsPipe
   ],
   imports: [
     CommonModule,

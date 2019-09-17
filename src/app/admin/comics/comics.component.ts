@@ -22,7 +22,7 @@ export class ComicsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   dataSource: ComicsDataSource;
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['id', 'imageIcon', 'name', 'description', 'issues', 'actions'];
 
   constructor(private service: ComicsService,
               public dialog: MatDialog,
@@ -41,7 +41,7 @@ export class ComicsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.paginator.page
       .subscribe(() => {
-        this.dataSource.loadComics(this.paginator.pageIndex + 1);
+        this.dataSource.loadComics(this.paginator.pageIndex + 1, this.paginator.pageSize);
       });
   }
 
