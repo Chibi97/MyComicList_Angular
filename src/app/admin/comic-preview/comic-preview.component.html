@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>
+  {{comic.name}}
+</h1>
+<div mat-dialog-content>
+  <img class="preview-image" [src]="comic.image" [alt]="comic.name">
+</div>
+<div mat-dialog-actions>
+  <button class="ml-auto" color="primary" mat-raised-button (click)="onClose()">Close Preview</button>
+</div>
