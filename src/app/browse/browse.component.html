@@ -1,27 +1,30 @@
 
 <app-layout>
-  <div class="container p-5">
-    <aside class="browse-filters">
-      <mat-card>
-        <mat-card-content>
-          <h2 class="example-h2">Browse by filters</h2>
-          <section class="example-section">
-            <mat-checkbox (change)="selectFilter($event)" class="example-margin" *ngFor="let g of this.allGenres" [value]="g.id">{{g.name}}</mat-checkbox>
-          </section>
-        </mat-card-content>
-      </mat-card>
-    </aside>
-
-
+  <div class="mycontainer p-5">
+     <aside class="browse-filters">
+       <mat-card>
+         <mat-card-content>
+           <h2 class="headline">Filters</h2>
+           <section class="filters">
+             <article class="first-col col">
+               <ng-container *ngFor='let g of allGenres'>
+                 <mat-checkbox (change)="selectFilter($event)" class="chb" [value]="g.id">{{g.name}}</mat-checkbox>
+               </ng-container>
+             </article>
+           </section>
+         </mat-card-content>
+       </mat-card>
+     </aside>
     <ng-container *ngIf="allComics.length > 0; else elseTemplate">
       <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayoutGap="10px">
         <app-comic class="m-3" fxFlex="0 1 calc(33.3% - 10px - 2rem)" *ngFor="let comic of allComics" [comic]="comic">
         </app-comic>
       </div>
-      <mat-paginator (page)="fetchData($event)" [length]="totalCount" [pageSize]="pageSize"></mat-paginator>
     </ng-container>
     <ng-template #elseTemplate>
-      <h1>No Data has been loaded</h1>
+      <h1 class="no-msg">No data, sorry.</h1>
     </ng-template>
   </div>
+  <mat-paginator (page)="fetchData($event)" [length]="totalCount" [pageSize]="pageSize"></mat-paginator>
+
 </app-layout>

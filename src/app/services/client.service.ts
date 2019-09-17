@@ -12,8 +12,6 @@ export class ClientService {
   constructor(private http: HttpClient) { }
 
   get<TResponse>(route: string, params: any = {}) {
-    console.log(route);
-    console.log(params);
     return this.http.get<TResponse>(`${API}/${route}`, {
       headers: this.headers,
       params

@@ -1,0 +1,35 @@
+
+.mycontainer {
+    display: flex;
+    margin: 1em 2em;
+
+    .browse-filters {
+        .headline {
+            font-size: 1em;
+            font-weight: bold;
+            padding-bottom: 1em;
+            letter-spacing: 0.3em;
+            color: #5c6bc0;
+            text-transform: uppercase;
+        }
+    }
+
+    .filters {
+      display: flex;
+
+      .col {
+        display: flex;
+        flex-direction: column;
+        flex: 1 0 25%;
+
+        .chb {
+          padding: .5em;
+        }
+      }
+    }
+
+    .no-msg {
+        margin-left: 2em;
+    }
+
+}

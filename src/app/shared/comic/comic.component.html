@@ -1,6 +1,5 @@
  <mat-card class="example-card">
-  <mat-card-header>
-    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+  <mat-card-header class="card-header">
     <mat-card-title>{{comic.name}}</mat-card-title>
     <mat-card-subtitle>
         <ng-container *ngFor="let author of comic.authors; let i = index">
@@ -9,18 +8,15 @@
         </ng-container>
     </mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image src="{{comic.pictures[0]}}" alt="Photo of a Shiba Inu">
-  <mat-card-content>
+  <img mat-card-image src="{{comic.pictures[0]}}" alt="{{comic.name}}">
+  <mat-card-content class="card-content">
     <p class="description">
       {{comic.description}}
     </p>
 
-    <section fxLayout="column" gdAlignRows="end">
+    <section fxLayout="column" gdAlignRows="end" class="additional-info">
         <p>{{comic.publishedAt | date}}</p>
         <p>{{comic.publisher}}</p>
     </section>
   </mat-card-content>
-  <!-- <mat-card-actions fxLayout="column" gdAlignRows="end">
-    <button mat-button>Add to my list</button>
-  </mat-card-actions> -->
 </mat-card>
