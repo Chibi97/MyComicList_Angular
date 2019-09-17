@@ -75,7 +75,10 @@
 
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr
+              [@rowsAnimation]="{value: ':enter' , params: {delay: i*500} }"
+              mat-row *matRowDef="let row; columns: displayedColumns; let i = index">
+            </tr>
           </table>
 
         <mat-paginator [length]="dataSource.length$ | async"

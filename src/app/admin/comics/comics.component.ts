@@ -11,11 +11,13 @@ import { ComicsService } from 'src/app/services/comics.service';
 import { ComicsDataSource } from './comics-data-source';
 import { tap } from 'rxjs/operators';
 import { ComicPreviewComponent } from '../comic-preview/comic-preview.component';
+import { rowsAnimation } from 'src/app/animations';
 
 @Component({
   selector: 'app-comics',
   templateUrl: './comics.component.html',
-  styleUrls: ['./comics.component.scss']
+  styleUrls: ['./comics.component.scss'],
+  animations: [rowsAnimation]
 })
 export class ComicsComponent implements OnInit, AfterViewInit {
   @HostBinding('class') classes = 'f-1-1 d-flex';

@@ -11,6 +11,7 @@ import { PublisherFormComponent } from './forms/publisher-form/publisher-form.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { LimitWordsPipe } from '../pipes/limit-words';
 import { ComicPreviewComponent } from './comic-preview/comic-preview.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent},
