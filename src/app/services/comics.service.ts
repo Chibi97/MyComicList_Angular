@@ -17,6 +17,15 @@ export class ComicsService {
     return this.client.post('comics', data);
   }
 
+  editComic(comic: Comic) {
+    const { id, ...other } = comic;
+    return this.client.put(`comics/${id}`, other);
+  }
+
+  deleteComic(comicId: number) {
+    return this.client.delete(`comics/${comicId}`);
+  }
+
   getComics(pageNumber = 1, perPage = 6, filters = []) {
     let httpParams = new HttpParams();
     filters.forEach(filter => {

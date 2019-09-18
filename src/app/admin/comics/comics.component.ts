@@ -1,16 +1,13 @@
 import { ComicFormComponent } from './../forms/comic-form/comic-form.component';
 import { Component, OnInit, HostBinding, ViewChild, AfterViewInit } from '@angular/core';
 import { Comic } from 'src/app/types/responses';
-import { PublishersService } from 'src/app/services/publishers.service';
 import { MatDialog } from '@angular/material/dialog';
-import { PublisherFormComponent } from '../forms/publisher-form/publisher-form.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ComicsService } from 'src/app/services/comics.service';
 import { ComicsDataSource } from './comics-data-source';
-import { tap } from 'rxjs/operators';
 import { ComicPreviewComponent } from '../comic-preview/comic-preview.component';
 import { rowsAnimation } from '../../shared/animations/index';
 
@@ -57,14 +54,14 @@ export class ComicsComponent implements OnInit, AfterViewInit {
     // this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  // delete(id: number) {
-  //   this.service.deletePublisher(id)
-  //     .subscribe(() => {
-  //       this.snack.open('Successfully deleted', undefined,
-  //         { duration: 2000, verticalPosition: 'top' });
-  //       this.reloadData();
-  //     });
-  // }
+  delete(id: number) {
+    this.service.deleteComic(id)
+      .subscribe(() => {
+        this.snack.open('Successfully deleted', undefined,
+          { duration: 2000, verticalPosition: 'top' });
+        this.dataSource.loadComics(this.paginator.pageIndex + 1, this.paginator.pageSize);
+      });
+  }
 
   // private reloadData() {
   //   this.service.getPublishers()
