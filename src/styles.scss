@@ -23,6 +23,11 @@ ul {
   list-style-type: none;
 }
 
+.error-message {
+  color: map-get($comics-warn, 600);
+  margin: .33rem 0;
+}
+
 .text-uppercase {
   text-transform: uppercase;
 }

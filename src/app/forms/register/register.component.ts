@@ -13,13 +13,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  customError: string;
   @HostBinding('class') classes = 'f-1-1';
   registerForm = this.fb.group({
-    username: ['', [Validators.required]],
-    password: ['', Validators.required],
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]]
+    username: ['', [Validators.required, Validators.minLength(3)]],
+    password: ['', [Validators.required, Validators.maxLength(50),
+      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]],
+    firstName: ['', [Validators.required, Validators.pattern(/^([A-Z][a-z]+)(\s[A-Z][a-z]+)*$/)]],
+    lastName: ['', [Validators.required, Validators.pattern(/^([A-Z][a-z]+)(\s[A-Z][a-z]+)*$/)]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(50)]]
   });
 
   constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private snackBar: MatSnackBar) { }
@@ -48,6 +50,10 @@ export class RegisterComponent implements OnInit {
         const errors = err.error.errors;
         const controls = this.registerForm.controls;
 
+        if (errors.Email) {
+          controls.email.setErrors({ backend: errors.Email });
+        }
+
         if (errors.Username) {
           controls.username.setErrors({backend: errors.Username});
         }
@@ -64,8 +70,19 @@ export class RegisterComponent implements OnInit {
           controls.lastName.setErrors({backend: errors.LastName});
         }
       } else {
-        console.error('Something enexpected happaned');
-        console.error(err);
+        this.customError = err.error.message;
+        console.log(this.customError);
+        if (this.customError.includes('Username')) {
+          this.registerForm.controls.username.setErrors({ invalid: true });
+        } else {
+          this.registerForm.setErrors({invalid: true});
+        }
+
+        if (this.customError.includes('Email')) {
+          this.registerForm.controls.email.setErrors({ invalid: true });
+        } else {
+          this.registerForm.setErrors({ invalid: true });
+        }
       }
     });
   }

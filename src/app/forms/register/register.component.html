@@ -3,7 +3,12 @@
     <mat-card class="app-screen-form">
       <mat-card-header>
         <mat-card-title>Welcome to MyComicsList!</mat-card-title>
-        <mat-card-subtitle>Please Register</mat-card-subtitle>
+        <mat-card-subtitle>Please Register
+          <p class="py-3 error-message" *ngIf="customError !== ''">
+            {{customError}}
+          </p>
+        </mat-card-subtitle>
+        
       </mat-card-header>
       <mat-card-content class="px-2 py-3">
         <div fxLayout="column">
@@ -16,7 +21,10 @@
               <mat-error *ngIf="registerForm.get('email').hasError('email')">
                 The email field must be a valid email
               </mat-error>
-              <mat-error *ngFor="let error of displayErrors('username')">
+              <mat-error *ngIf="registerForm.get('email').hasError('maxlength')">
+                Maximum number of characters is 50
+              </mat-error>
+              <mat-error *ngFor="let error of displayErrors('email')">
                 {{error}}
               </mat-error>
             </mat-form-field>
@@ -27,6 +35,9 @@
               <input formControlName="username" matInput placeholder="Username">
               <mat-error *ngIf="registerForm.get('username').hasError('required')">
                 The username field is required
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('username').hasError('minlength')">
+                Minimum number of characters is 3
               </mat-error>
               <mat-error *ngFor="let error of displayErrors('username')">
                 {{error}}
@@ -40,6 +51,13 @@
               <mat-error *ngIf="registerForm.get('password').hasError('required')">
                 The password field is required
               </mat-error>
+              <mat-error *ngIf="registerForm.get('password').hasError('maxlength')">
+                Maximum number of characters is 50
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('password').hasError('pattern')">
+                Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one of
+                these: @ $ ! % * ? & special characters
+              </mat-error>
               <mat-error *ngFor="let error of displayErrors('password')">
                 {{error}}
               </mat-error>
@@ -52,6 +70,9 @@
               <mat-error *ngIf="registerForm.get('firstName').hasError('required')">
                 The first name field is required
               </mat-error>
+              <mat-error *ngIf="registerForm.get('firstName').hasError('pattern')">
+                First name must be capitalized
+              </mat-error>
               <mat-error *ngFor="let error of displayErrors('firstName')">
                 {{error}}
               </mat-error>
@@ -63,6 +84,9 @@
               <input formControlName="lastName" matInput placeholder="Last Name">
               <mat-error *ngIf="registerForm.get('lastName').hasError('required')">
                 The last name field is required
+              </mat-error>
+              <mat-error *ngIf="registerForm.get('lastName').hasError('pattern')">
+                First name must be capitalized
               </mat-error>
               <mat-error *ngFor="let error of displayErrors('lastName')">
                 {{error}}

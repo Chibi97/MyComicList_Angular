@@ -40,20 +40,20 @@ export class LoginComponent implements OnInit {
     return [];
   }
 
-  openSnackBar(message: string, action?: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-      verticalPosition: 'top',
-      horizontalPosition: 'right'
-    });
-  }
-
   clearError() {
     if (this.customError !== '') {
       this.customError = '';
       this.loginForm.controls.username.setErrors(null);
       this.loginForm.controls.password.setErrors(null);
     }
+  }
+
+  openSnackBar(message: string, action?: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+      verticalPosition: 'top',
+      horizontalPosition: 'right'
+    });
   }
 
   onSubmit() {
