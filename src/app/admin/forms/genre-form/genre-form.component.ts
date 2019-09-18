@@ -32,10 +32,10 @@ export class GenreFormComponent {
         name: data.name
       });
       this.mode = 'Edit';
-      this.btnText = 'Update Publisher';
+      this.btnText = 'Update Genre';
     } else {
       this.mode = 'New';
-      this.btnText = 'Add New Publisher';
+      this.btnText = 'Add New Genre';
     }
   }
 
