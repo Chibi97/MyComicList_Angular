@@ -1,11 +1,14 @@
 <form [formGroup]="comicForm" (submit)="onSubmit()">
   <h1 mat-dialog-title>Add New Comic</h1>
+  <p class="py-3 error-message" *ngIf="customError !== ''">
+    {{customError}}
+  </p>
   <div mat-dialog-content>
     <div fxLayout="row" fxLayoutGap="10px">
       <div fxFlex>
         <div class="d-block">
           <mat-form-field class="w-100">
-            <input formControlName="name" matInput placeholder="Name">
+            <input (input)="clearError()" formControlName="name" matInput placeholder="Name">
             <mat-error *ngIf="comicForm.get('name').hasError('required')">
               The name field is required
             </mat-error>
@@ -17,12 +20,16 @@
             <mat-error *ngIf="comicForm.get('name').hasError('maxlength')">
               Maximum length is 50
             </mat-error>
+
+            <mat-error *ngFor="let error of displayErrors('name')">
+              {{error}}
+            </mat-error>
           </mat-form-field>
         </div>
 
         <div class="d-block">
           <mat-form-field class="w-100">
-            <input formControlName="issues" matInput placeholder="Issues">
+            <input (input)="clearError()" formControlName="issues" matInput placeholder="Issues">
             <mat-error *ngIf="comicForm.get('issues').hasError('required')">
               The issues field is required
             </mat-error>
@@ -30,12 +37,17 @@
             <mat-error *ngIf="comicForm.get('issues').hasError('regex')">
               Issues must be a number
             </mat-error>
+
+            <mat-error *ngFor="let error of displayErrors('issues')">
+              {{error}}
+            </mat-error>
           </mat-form-field>
         </div>
 
         <div class="d-block">
           <mat-form-field class="w-100">
-            <textarea formControlName="description" matInput placeholder="Description"></textarea>
+            <textarea (input)="clearError()" formControlName="description" matInput
+              placeholder="Description"></textarea>
             <mat-error *ngIf="comicForm.get('description').hasError('required')">
               The description field is required
             </mat-error>
@@ -46,6 +58,10 @@
 
             <mat-error *ngIf="comicForm.get('description').hasError('maxlength')">
               Maximum length is 700
+            </mat-error>
+
+            <mat-error *ngFor="let error of displayErrors('description')">
+              {{error}}
             </mat-error>
 
           </mat-form-field>
@@ -60,6 +76,10 @@
             <mat-error *ngIf="comicForm.get('genres').hasError('required')">
               At least 1 must be selected
             </mat-error>
+
+            <mat-error *ngFor="let error of displayErrors('genres')">
+              {{error}}
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -71,6 +91,10 @@
             </mat-select>
             <mat-error *ngIf="comicForm.get('authors').hasError('required')">
               At least 1 must be selected
+            </mat-error>
+
+            <mat-error *ngFor="let error of displayErrors('authors')">
+              {{error}}
             </mat-error>
           </mat-form-field>
         </div>
@@ -84,6 +108,10 @@
             <mat-error *ngIf="comicForm.get('publisher').hasError('required')">
               At least 1 must be selected
             </mat-error>
+
+            <mat-error *ngFor="let error of displayErrors('publisher')">
+              {{error}}
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -96,7 +124,10 @@
         <img class="img-fluid" [src]="imgUrl" *ngIf="imgUrl" />
         <mat-error *ngIf="comicForm.get('image').hasError('required') && comicForm.get('image').touched">
           The image is required
+        </mat-error>
 
+        <mat-error *ngFor="let error of displayErrors('image')">
+          {{error}}
         </mat-error>
       </div>
 
