@@ -1,4 +1,4 @@
-import { NgModule, HostBinding } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MaterialModule } from '../material.module';
@@ -40,7 +40,8 @@ const routes: Routes = [
   ],
   entryComponents: [
     PublisherFormComponent,
-    ComicPreviewComponent
+    ComicPreviewComponent,
+    ComicFormComponent
   ],
   exports: [DashboardComponent]
 })

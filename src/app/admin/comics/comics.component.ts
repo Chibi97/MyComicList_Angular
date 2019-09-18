@@ -1,3 +1,4 @@
+import { ComicFormComponent } from './../forms/comic-form/comic-form.component';
 import { Component, OnInit, HostBinding, ViewChild, AfterViewInit } from '@angular/core';
 import { Comic } from 'src/app/types/responses';
 import { PublishersService } from 'src/app/services/publishers.service';
@@ -29,10 +30,15 @@ export class ComicsComponent implements OnInit, AfterViewInit {
 
   constructor(private service: ComicsService,
               public imgDialog: MatDialog,
+              public formDialog: MatDialog,
               private snack: MatSnackBar) { }
 
   openImageDialog(comic: Comic) {
     this.imgDialog.open(ComicPreviewComponent, {data: comic, width: '40rem'});
+  }
+
+  openFormDialog() {
+    this.formDialog.open(ComicFormComponent, {width: '40rem'});
   }
 
   ngOnInit() {

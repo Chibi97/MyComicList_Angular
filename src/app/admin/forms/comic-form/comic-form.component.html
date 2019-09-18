@@ -1,1 +1,69 @@
-<p>comic-form works!</p>
+<form [formGroup]="comicForm">
+  <h1 mat-dialog-title>Add New Comic</h1>
+  <div mat-dialog-content>
+    <div fxLayout="row">
+      <div fxFlex>
+        <div class="d-block">
+          <mat-form-field class="w-100">
+            <input formControlName="name" matInput placeholder="Name">
+          </mat-form-field>
+        </div>
+
+        <div class="d-block">
+          <mat-form-field class="w-100">
+            <input formControlName="issues" matInput placeholder="Origin">
+          </mat-form-field>
+        </div>
+
+        <div class="d-block">
+          <mat-form-field class="w-100">
+            <textarea formControlName="description" matInput placeholder="Description"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="d-block">
+          <mat-form-field class="w-100">
+            <mat-label>Genres</mat-label>
+            <mat-select formControlName="genres" multiple>
+              <mat-option value="1">Option #1</mat-option>
+              <mat-option value="2">Option #2</mat-option>
+              <mat-option value="3">Option #3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="d-block">
+          <mat-form-field class="w-100">
+            <mat-label>Authors</mat-label>
+            <mat-select formControlName="authors" multiple>
+              <mat-option value="1">Option #1</mat-option>
+              <mat-option value="2">Option #2</mat-option>
+              <mat-option value="3">Option #3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="d-block">
+          <mat-form-field class="w-100">
+            <mat-label>Publisher</mat-label>
+            <mat-select formControlName="publisher">
+              <mat-option value="1">Some #1</mat-option>
+              <mat-option value="2">Some #2</mat-option>
+              <mat-option value="3">Some #3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex>
+
+      </div>
+
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button type="submit" [disabled]="!comicForm.valid" color="primary">
+      {{btnText}}
+    </button>
+    <button mat-raised-button type="button" (click)="onNoClick()" color="warn">Cancel</button>
+  </div>
+</form>
