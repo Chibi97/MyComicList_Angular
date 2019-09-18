@@ -1,7 +1,7 @@
 <form [formGroup]="comicForm">
   <h1 mat-dialog-title>Add New Comic</h1>
   <div mat-dialog-content>
-    <div fxLayout="row">
+    <div fxLayout="row" fxLayoutGap="10px">
       <div fxFlex>
         <div class="d-block">
           <mat-form-field class="w-100">
@@ -54,8 +54,13 @@
           </mat-form-field>
         </div>
       </div>
-      <div fxFlex>
-
+      <div fxLayout="column" fxLayoutAlign="start center" fxFlex>
+        <input #file type="file" accept="image/*" class="file-upload" (change)="preview(file.files)" />
+        <button mat-button color="primary" (click)="onUploadClick(file)">
+          <mat-icon>file_upload</mat-icon>
+          Upload Image
+        </button>
+        <img class="img-fluid" [src]="imgUrl" *ngIf="imgUrl" />
       </div>
 
     </div>

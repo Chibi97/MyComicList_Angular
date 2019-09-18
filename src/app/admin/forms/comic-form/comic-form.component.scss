@@ -1,0 +1,11 @@
+@import "../../../../variables";
+
+.file-upload {
+  display: none;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+  border: 1px solid mat-color($comics-primary);
+}
