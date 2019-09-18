@@ -17,7 +17,12 @@
      </aside>
     <ng-container *ngIf="allComics.length > 0; else elseTemplate">
       <div fxLayout="row wrap" fxLayoutAlign="flex-start" fxLayoutGap="10px">
-        <app-comic class="thecomic" fxFlex="0 1 calc(33.3% - 10px - 2rem)" *ngFor="let comic of allComics" [comic]="comic">
+        <app-comic
+          class="thecomic"
+          fxFlex="0 1 calc(33.3% - 10px - 2rem)"
+          *ngFor="let comic of allComics; let i = index"
+          [comic]="comic"
+          >
         </app-comic>
       </div>
     </ng-container>
