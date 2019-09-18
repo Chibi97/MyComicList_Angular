@@ -71,7 +71,7 @@
                 The first name field is required
               </mat-error>
               <mat-error *ngIf="registerForm.get('firstName').hasError('pattern')">
-                First name must be capitalized
+                First name must be capitalized and can contain only letters
               </mat-error>
               <mat-error *ngFor="let error of displayErrors('firstName')">
                 {{error}}
@@ -86,7 +86,7 @@
                 The last name field is required
               </mat-error>
               <mat-error *ngIf="registerForm.get('lastName').hasError('pattern')">
-                First name must be capitalized
+                Last name must be capitalized and can contain only letters
               </mat-error>
               <mat-error *ngFor="let error of displayErrors('lastName')">
                 {{error}}

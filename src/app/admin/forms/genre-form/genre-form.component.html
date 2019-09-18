@@ -1,0 +1,30 @@
+<form [formGroup]="genreForm" (ngSubmit)="onSubmit()">
+  <h1 mat-dialog-title>Manage genre</h1>
+  <p class="py-3 error-message" *ngIf="customError !== ''">
+    {{customError}}
+  </p>
+  <div mat-dialog-content>
+
+    <div class="d-block mb-3">
+      <mat-form-field class="w-100 mb-3">
+        <input (input)="clearError()" formControlName="name" matInput placeholder="Name">
+        <mat-error *ngIf="genreForm.get('name').hasError('required')">
+          The name field is required
+        </mat-error>
+        <mat-error *ngIf="genreForm.get('name').hasError('regex')">
+          Name must be capitalized and can contain only letters
+        </mat-error>
+        <mat-error *ngFor="let error of displayErrors('name')">
+          {{error}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button type="submit" [disabled]="!genreForm.valid" color="primary">
+      {{btnText}}
+    </button>
+    <button mat-raised-button type="button" (click)="onNoClick()" color="warn">Cancel</button>
+  </div>
+</form>

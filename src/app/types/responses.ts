@@ -9,6 +9,17 @@ export interface Genre {
   name: string;
 }
 
+export interface AuthorRead {
+  id: number;
+  fullName: string;
+}
+
+export interface AuthorWrite {
+  id: number;
+  firstName: string;
+  lastName: string;
+}
+
 export interface PageResponse<T> {
   currentPage: number;
   pageCount: number;
