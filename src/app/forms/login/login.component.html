@@ -2,7 +2,7 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <mat-card class="app-screen-form">
         <mat-card-header>
-          <mat-card-title>Welcome to MyComicsList!</mat-card-title>
+          <mat-card-title>Welcome to Comicology!</mat-card-title>
           <mat-card-subtitle>
             <p>
               Please Login
@@ -20,6 +20,9 @@
                   <mat-error *ngIf="loginForm.get('username').hasError('required')">
                     The username field is required
                   </mat-error>
+                  <mat-error *ngIf="loginForm.get('username').hasError('minlength')">
+                    Minimum number of characters is 3
+                  </mat-error>
                   <mat-error *ngFor="let error of displayErrors('username')">
                     {{error}}
                   </mat-error>
@@ -29,6 +32,19 @@
               <div class="d-block">
                 <mat-form-field class="w-100">
                   <input (input)="clearError()" formControlName="password" type="password" matInput placeholder="Password">
+                  <mat-error *ngIf="loginForm.get('password').hasError('required')">
+                    The passeord field is required
+                  </mat-error>
+                  
+                  <mat-error *ngIf="loginForm.get('password').hasError('minlength')">
+                    Minimum number of characters is 8
+                  </mat-error>
+
+                  <mat-error *ngIf="loginForm.get('password').hasError('pattern')">
+                    Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one of
+                    these: @ $ ! % * ? & special characters
+                  </mat-error>
+                  
                   <mat-error *ngFor="let error of displayErrors('password')">
                     {{error}}
                   </mat-error>

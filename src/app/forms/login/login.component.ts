@@ -5,6 +5,7 @@ import { isErrorResponse } from 'src/app/types/utils';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { validateRegex } from 'src/app/shared/validators/regex.directive';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,10 @@ export class LoginComponent implements OnInit {
 
   customError = '';
   loginForm = this.fb.group({
-    username: ['oki', [Validators.required]],
-    password: ['Olja1234!', Validators.required]
+    username: ['', [Validators.required, Validators.minLength(3)]],
+    password: ['', [Validators.required, Validators.minLength(8),
+      Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/)]
+    ]
   });
 
   constructor(
