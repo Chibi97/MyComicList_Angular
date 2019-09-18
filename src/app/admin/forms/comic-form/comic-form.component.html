@@ -75,7 +75,7 @@
         <img class="img-fluid" [src]="imgUrl" *ngIf="imgUrl" />
         <mat-error *ngIf="comicForm.get('image').hasError('required')">
           The image is required
-          {{comicForm.get('image') | json}}
+
         </mat-error>
       </div>
 
