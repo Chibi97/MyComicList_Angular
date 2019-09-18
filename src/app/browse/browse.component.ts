@@ -58,7 +58,7 @@ export class BrowseComponent implements OnInit, OnDestroy {
       // {name: 'name', values: ['Nar']}
     ];
 
-    this.comicService.getComics(pageNum, 3, filters).subscribe((comics) => {
+    this.comicService.getComics(pageNum, 6, filters).subscribe((comics) => {
       this.allComics = comics.data;
       this.pageSize = comics.perPage;
       this.totalCount = comics.totalCount;

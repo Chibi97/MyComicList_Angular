@@ -13,7 +13,7 @@ export class ComicsService {
 
   constructor(private client: ClientService) { }
 
-  getComics(pageNumber = 1, perPage = 3, filters = []) {
+  getComics(pageNumber = 1, perPage = 6, filters = []) {
     let httpParams = new HttpParams();
     filters.forEach(filter => {
       const name = filter.name;

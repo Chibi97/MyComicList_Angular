@@ -14,7 +14,7 @@ export class HomeSliderComponent implements OnInit {
   constructor(private service: ComicsService) { }
 
   ngOnInit() {
-    this.service.getComics().subscribe((comics) => {
+    this.service.getComics(1, 6).subscribe((comics) => {
       this.items = comics.data;
     });
   }
