@@ -5,6 +5,7 @@ import { GenresService } from 'src/app/services/genres.service';
 import { Genre, AuthorRead, Publisher } from 'src/app/types/responses';
 import { PublishersService } from 'src/app/services/publishers.service';
 import { AuthorsService } from 'src/app/services/authors.service';
+import { ComicsService } from 'src/app/services/comics.service';
 
 @Component({
   selector: 'app-comic-form',
@@ -17,7 +18,8 @@ export class ComicFormComponent implements OnInit {
     private dialogRef: MatDialogRef<ComicFormComponent>,
     private genreService: GenresService,
     private publisherService: PublishersService,
-    private authorService: AuthorsService
+    private authorService: AuthorsService,
+    private comicService: ComicsService
   ) { }
 
   comicForm = this.fb.group({
@@ -35,6 +37,7 @@ export class ComicFormComponent implements OnInit {
   publishers: Publisher[];
   btnText = 'Add New Comic';
   imgUrl: string;
+  selectedFile: File;
 
   ngOnInit() {
     this.getData();
@@ -42,6 +45,24 @@ export class ComicFormComponent implements OnInit {
 
   onUploadClick(fileInputRef: HTMLInputElement) {
     fileInputRef.click();
+  }
+
+  onSubmit() {
+    const data = this.comicForm.value;
+
+    const formData = new FormData();
+    formData.append('image', this.selectedFile);
+    formData.append('name', data.name);
+    formData.append('genres', data.genres);
+    formData.append('authors', data.authors);
+    formData.append('issues', data.issues);
+    formData.append('publisher', data.publisher);
+    formData.append('description', data.description);
+
+    this.comicService.createComic(formData)
+      .subscribe(() => {
+        console.log('Comic created!');
+      });
   }
 
   preview(files: File[]) {
@@ -56,6 +77,7 @@ export class ComicFormComponent implements OnInit {
     reader.onload = () => {
       this.imgUrl = reader.result as string;
     };
+    this.selectedFile = file;
   }
 
   onNoClick() {

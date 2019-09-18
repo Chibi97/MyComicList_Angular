@@ -13,6 +13,10 @@ export class ComicsService {
 
   constructor(private client: ClientService) { }
 
+  createComic(data: FormData) {
+    return this.client.post('comics', data);
+  }
+
   getComics(pageNumber = 1, perPage = 6, filters = []) {
     let httpParams = new HttpParams();
     filters.forEach(filter => {
