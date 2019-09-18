@@ -1,6 +1,6 @@
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { GenresService } from 'src/app/services/genres.service';
 import { Genre, AuthorRead, Publisher } from 'src/app/types/responses';
 import { PublishersService } from 'src/app/services/publishers.service';
@@ -51,6 +51,7 @@ export class ComicFormComponent implements OnInit {
 
     const file = files[0];
     const reader = new FileReader();
+    this.comicForm.get('image').markAsTouched();
     reader.readAsDataURL(file);
     reader.onload = () => {
       this.imgUrl = reader.result as string;

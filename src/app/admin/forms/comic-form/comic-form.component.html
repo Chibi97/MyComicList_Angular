@@ -67,13 +67,13 @@
         </div>
       </div>
       <div fxLayout="column" fxLayoutAlign="start center" fxFlex>
-        <input formControlName="image" #file type="file" accept="image/*" class="file-upload"  />
+        <input (input)="preview(file.files)" formControlName="image" #file type="file" accept="image/*" class="file-upload"  />
         <button type="button" mat-button color="primary" (click)="onUploadClick(file)">
           <mat-icon>file_upload</mat-icon>
           Upload Image
         </button>
         <img class="img-fluid" [src]="imgUrl" *ngIf="imgUrl" />
-        <mat-error *ngIf="comicForm.get('image').hasError('required')">
+        <mat-error *ngIf="comicForm.get('image').hasError('required') && comicForm.get('image').touched">
           The image is required
 
         </mat-error>
