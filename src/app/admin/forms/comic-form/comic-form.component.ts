@@ -66,7 +66,6 @@ export class ComicFormComponent implements OnInit {
 
     this.comicService.createComic(this.toFormData(data))
       .subscribe(() => {
-<<<<<<< HEAD
         console.log('Comic created!');
       },
       (err: HttpErrorResponse) => {
@@ -113,9 +112,7 @@ export class ComicFormComponent implements OnInit {
             this.comicForm.setErrors({ invalid: true });
           }
         }
-=======
         this.dialogRef.close();
->>>>>>> b06f409ffe36de6e7616eb9cf44f5f7602beb9b1
       });
   }
 
