@@ -2,7 +2,6 @@ import { ComicFormComponent } from './../forms/comic-form/comic-form.component';
 import { Component, OnInit, HostBinding, ViewChild, AfterViewInit } from '@angular/core';
 import { Comic } from 'src/app/types/responses';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,6 +9,7 @@ import { ComicsService } from 'src/app/services/comics.service';
 import { ComicsDataSource } from './comics-data-source';
 import { ComicPreviewComponent } from '../comic-preview/comic-preview.component';
 import { rowsAnimation } from '../../shared/animations/index';
+import { DescriptionPreviewComponent } from '../description-preview/description-preview.component';
 
 @Component({
   selector: 'app-comics',
@@ -27,11 +27,16 @@ export class ComicsComponent implements OnInit, AfterViewInit {
 
   constructor(private service: ComicsService,
               public imgDialog: MatDialog,
+              public descDialog: MatDialog,
               public formDialog: MatDialog,
               private snack: MatSnackBar) { }
 
   openImageDialog(comic: Comic) {
     this.imgDialog.open(ComicPreviewComponent, {data: comic, width: '40rem'});
+  }
+
+  openDescriptionDialog(comic: Comic) {
+    this.descDialog.open(DescriptionPreviewComponent, {data: comic, width: '30rem'});
   }
 
   openFormDialog() {

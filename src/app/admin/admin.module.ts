@@ -16,6 +16,7 @@ import { GenresComponent } from './genres/genres.component';
 import { GenreFormComponent } from './forms/genre-form/genre-form.component';
 import { AuthorsComponent } from './authors/authors.component';
 import { AuthorFormComponent } from './forms/author-form/author-form.component';
+import { DescriptionPreviewComponent } from './description-preview/description-preview.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent},
@@ -38,7 +39,8 @@ const routes: Routes = [
     GenresComponent,
     GenreFormComponent,
     AuthorsComponent,
-    AuthorFormComponent
+    AuthorFormComponent,
+    DescriptionPreviewComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +54,8 @@ const routes: Routes = [
     ComicPreviewComponent,
     ComicFormComponent,
     GenreFormComponent,
-    AuthorFormComponent
+    AuthorFormComponent,
+    DescriptionPreviewComponent
   ],
   exports: [DashboardComponent]
 })
