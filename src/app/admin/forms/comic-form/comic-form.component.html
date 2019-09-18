@@ -8,7 +8,7 @@
       <div fxFlex>
         <div class="d-block">
           <mat-form-field class="w-100">
-            <input (input)="clearError()" formControlName="name" matInput placeholder="Name">
+            <input formControlName="name" matInput placeholder="Name">
             <mat-error *ngIf="comicForm.get('name').hasError('required')">
               The name field is required
             </mat-error>
@@ -29,7 +29,7 @@
 
         <div class="d-block">
           <mat-form-field class="w-100">
-            <input (input)="clearError()" formControlName="issues" matInput placeholder="Issues">
+            <input formControlName="issues" matInput placeholder="Issues">
             <mat-error *ngIf="comicForm.get('issues').hasError('required')">
               The issues field is required
             </mat-error>
@@ -46,7 +46,7 @@
 
         <div class="d-block">
           <mat-form-field class="w-100">
-            <textarea (input)="clearError()" formControlName="description" matInput
+            <textarea formControlName="description" matInput
               placeholder="Description"></textarea>
             <mat-error *ngIf="comicForm.get('description').hasError('required')">
               The description field is required
@@ -87,7 +87,7 @@
           <mat-form-field class="w-100">
             <mat-label>Authors</mat-label>
             <mat-select formControlName="authors" multiple>
-              <mat-option *ngFor="let a of authors" [value]="a.id">{{a.fullName}}</mat-option>
+              <mat-option *ngFor="let a of authors" [value]="a.id" required>{{a.fullName}}</mat-option>
             </mat-select>
             <mat-error *ngIf="comicForm.get('authors').hasError('required')">
               At least 1 must be selected

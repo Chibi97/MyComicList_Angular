@@ -67,6 +67,7 @@ export class ComicFormComponent implements OnInit {
     this.comicService.createComic(this.toFormData(data))
       .subscribe(() => {
         console.log('Comic created!');
+        this.dialogRef.close();
       },
       (err: HttpErrorResponse) => {
         if (isErrorResponse(err.error)) {
@@ -75,23 +76,23 @@ export class ComicFormComponent implements OnInit {
           }
 
           if (err.error.errors.Issues) {
-            this.comicForm.controls.issues.setErrors({ backend: err.error.errors.issues });
+            this.comicForm.controls.issues.setErrors({ backend: err.error.errors.Issues });
           }
 
           if (err.error.errors.Description) {
-            this.comicForm.controls.description.setErrors({ backend: err.error.errors.description });
+            this.comicForm.controls.description.setErrors({ backend: err.error.errors.Description });
           }
 
           if (err.error.errors.Genres) {
-            this.comicForm.controls.genres.setErrors({ backend: err.error.errors.genres });
+            this.comicForm.controls.genres.setErrors({ backend: err.error.errors.Genres });
           }
 
           if (err.error.errors.Authors) {
-            this.comicForm.controls.authors.setErrors({ backend: err.error.errors.authors });
+            this.comicForm.controls.authors.setErrors({ backend: err.error.errors.Authors });
           }
 
           if (err.error.errors.Publisher) {
-            this.comicForm.controls.publisher.setErrors({ backend: err.error.errors.publisher });
+            this.comicForm.controls.publisher.setErrors({ backend: err.error.errors.Publisher });
           }
 
           if (err.error.errors.Image) {
@@ -112,7 +113,6 @@ export class ComicFormComponent implements OnInit {
             this.comicForm.setErrors({ invalid: true });
           }
         }
-        this.dialogRef.close();
       });
   }
 
@@ -168,13 +168,5 @@ export class ComicFormComponent implements OnInit {
     }
 
     return [];
-  }
-
-  clearError() {
-    if (this.customError !== '') {
-      this.customError = '';
-      this.comicForm.controls.name.setErrors(null);
-      this.comicForm.controls.origin.setErrors(null);
-    }
   }
 }
