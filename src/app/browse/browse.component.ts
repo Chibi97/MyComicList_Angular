@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ComicsService } from '../services/comics.service';
 import { Comic, Genre } from '../types/responses';
 import { GenresService } from '../services/genres.service';
@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-browse',
   templateUrl: './browse.component.html',
-  styleUrls: ['./browse.component.scss']
+  styleUrls: ['./browse.component.scss'],
 })
 export class BrowseComponent implements OnInit, OnDestroy {
   allComics: Comic[] = [];
