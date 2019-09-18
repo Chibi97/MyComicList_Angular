@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LimitWordsPipe } from '../shared/pipes/limit-words';
 import { ComicPreviewComponent } from './comic-preview/comic-preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComicFormComponent } from './forms/comic-form/comic-form.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
     PublishersComponent,
     PublisherFormComponent,
     LimitWordsPipe,
-    ComicPreviewComponent
+    ComicPreviewComponent,
+    ComicFormComponent
   ],
   imports: [
     CommonModule,
