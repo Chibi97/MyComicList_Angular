@@ -56,8 +56,8 @@ export class PublisherFormComponent {
   clearError() {
     if (this.customError !== '') {
       this.customError = '';
-      this.publisherForm.controls.username.setErrors(null);
-      this.publisherForm.controls.password.setErrors(null);
+      this.publisherForm.controls.name.setErrors(null);
+      this.publisherForm.controls.origin.setErrors(null);
     }
   }
 

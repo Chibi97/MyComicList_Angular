@@ -12,7 +12,7 @@
           The name field is required
         </mat-error>
         <mat-error *ngIf="publisherForm.get('name').hasError('regex')">
-          Name must be capitalized
+          Name must be capitalized and can contain only letters
         </mat-error>
         <mat-error *ngFor="let error of displayErrors('name')">
             {{error}}
@@ -27,7 +27,7 @@
           The origin field is required
         </mat-error>
         <mat-error *ngIf="publisherForm.get('origin').hasError('regex')">
-          Origin must be capitalized
+          Origin must be capitalized and can contain only letters
         </mat-error>
         <mat-error *ngFor="let error of displayErrors('origin')">
             {{error}}
