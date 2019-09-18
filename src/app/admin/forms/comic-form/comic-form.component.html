@@ -34,9 +34,7 @@
           <mat-form-field class="w-100">
             <mat-label>Genres</mat-label>
             <mat-select formControlName="genres" multiple>
-              <mat-option value="1">Option #1</mat-option>
-              <mat-option value="2">Option #2</mat-option>
-              <mat-option value="3">Option #3</mat-option>
+              <mat-option *ngFor="let g of genres" [value]="g.id">{{g.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="comicForm.get('genres').hasError('required')">
               At least 1 must be selected
@@ -48,9 +46,7 @@
           <mat-form-field class="w-100">
             <mat-label>Authors</mat-label>
             <mat-select formControlName="authors" multiple>
-              <mat-option value="1">Option #1</mat-option>
-              <mat-option value="2">Option #2</mat-option>
-              <mat-option value="3">Option #3</mat-option>
+              <mat-option *ngFor="let a of authors" [value]="1">{{a.fullName}}</mat-option>
             </mat-select>
             <mat-error *ngIf="comicForm.get('authors').hasError('required')">
               At least 1 must be selected
@@ -62,9 +58,7 @@
           <mat-form-field class="w-100">
             <mat-label>Publisher</mat-label>
             <mat-select formControlName="publisher">
-              <mat-option value="1">Some #1</mat-option>
-              <mat-option value="2">Some #2</mat-option>
-              <mat-option value="3">Some #3</mat-option>
+              <mat-option [value]="p.id" *ngFor="let p of publishers">{{p.name}}</mat-option>
             </mat-select>
             <mat-error *ngIf="comicForm.get('publisher').hasError('required')">
               At least 1 must be selected
@@ -73,12 +67,16 @@
         </div>
       </div>
       <div fxLayout="column" fxLayoutAlign="start center" fxFlex>
-        <input #file type="file" accept="image/*" class="file-upload" (change)="preview(file.files)" />
-        <button mat-button color="primary" (click)="onUploadClick(file)">
+        <input formControlName="image" #file type="file" accept="image/*" class="file-upload"  />
+        <button type="button" mat-button color="primary" (click)="onUploadClick(file)">
           <mat-icon>file_upload</mat-icon>
           Upload Image
         </button>
         <img class="img-fluid" [src]="imgUrl" *ngIf="imgUrl" />
+        <mat-error *ngIf="comicForm.get('image').hasError('required')">
+          The image is required
+          {{comicForm.get('image') | json}}
+        </mat-error>
       </div>
 
     </div>
