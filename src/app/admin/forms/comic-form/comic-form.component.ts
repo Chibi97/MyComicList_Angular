@@ -1,5 +1,5 @@
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
@@ -14,12 +14,12 @@ export class ComicFormComponent implements OnInit {
   ) { }
 
   comicForm = this.fb.group({
-    name: [''],
-    issues: [''],
-    description: [''],
-    authors: [[]],
-    genres: [[]],
-    publisher: ['']
+    name: ['', Validators.required],
+    issues: ['', Validators.required],
+    description: ['', Validators.required],
+    authors: [[], Validators.required],
+    genres: [[], Validators.required],
+    publisher: ['', Validators.required]
   });
 
   btnText = 'Add New Comic';
