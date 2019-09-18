@@ -1,4 +1,4 @@
-import { NgModule, HostBinding } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MaterialModule } from '../material.module';
@@ -11,12 +11,14 @@ import { PublisherFormComponent } from './forms/publisher-form/publisher-form.co
 import { ReactiveFormsModule } from '@angular/forms';
 import { LimitWordsPipe } from '../shared/pipes/limit-words';
 import { ComicPreviewComponent } from './comic-preview/comic-preview.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GenresComponent } from './genres/genres.component';
+import { GenreFormComponent } from './forms/genre-form/genre-form.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent},
   { path: 'comics', component: ComicsComponent},
-  { path: 'publishers', component: PublishersComponent}
+  { path: 'publishers', component: PublishersComponent},
+  { path: 'genres', component: GenresComponent}
 ];
 
 @NgModule({
@@ -27,7 +29,9 @@ const routes: Routes = [
     PublishersComponent,
     PublisherFormComponent,
     LimitWordsPipe,
-    ComicPreviewComponent
+    ComicPreviewComponent,
+    GenresComponent,
+    GenreFormComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +42,8 @@ const routes: Routes = [
   ],
   entryComponents: [
     PublisherFormComponent,
-    ComicPreviewComponent
+    ComicPreviewComponent,
+    GenreFormComponent
   ],
   exports: [DashboardComponent]
 })
