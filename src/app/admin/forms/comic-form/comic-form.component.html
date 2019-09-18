@@ -67,7 +67,7 @@
           <mat-form-field class="w-100">
             <mat-label>Authors</mat-label>
             <mat-select formControlName="authors" multiple>
-              <mat-option *ngFor="let a of authors" [value]="1">{{a.fullName}}</mat-option>
+              <mat-option *ngFor="let a of authors" [value]="a.id">{{a.fullName}}</mat-option>
             </mat-select>
             <mat-error *ngIf="comicForm.get('authors').hasError('required')">
               At least 1 must be selected

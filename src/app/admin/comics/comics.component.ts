@@ -35,7 +35,10 @@ export class ComicsComponent implements OnInit, AfterViewInit {
   }
 
   openFormDialog() {
-    this.formDialog.open(ComicFormComponent, {width: '40rem'});
+    this.formDialog.open(ComicFormComponent, {width: '40rem'})
+      .afterClosed().subscribe(() => {
+        this.dataSource.loadComics();
+      });
   }
 
   closeFormDialog() {

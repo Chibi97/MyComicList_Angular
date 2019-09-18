@@ -8,6 +8,16 @@ import { AuthorsService } from 'src/app/services/authors.service';
 import { ComicsService } from 'src/app/services/comics.service';
 import { validateRegex } from 'src/app/shared/validators/regex.directive';
 
+export interface ComicSubmitData {
+  image: string;
+  name: string;
+  genres: number[];
+  authors: number[];
+  issues: number;
+  publisher: number;
+  description: string;
+}
+
 @Component({
   selector: 'app-comic-form',
   templateUrl: './comic-form.component.html',
@@ -49,20 +59,11 @@ export class ComicFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const data = this.comicForm.value;
+    const data = this.comicForm.value as ComicSubmitData;
 
-    const formData = new FormData();
-    formData.append('image', this.selectedFile);
-    formData.append('name', data.name);
-    formData.append('genres', data.genres);
-    formData.append('authors', data.authors);
-    formData.append('issues', data.issues);
-    formData.append('publisher', data.publisher);
-    formData.append('description', data.description);
-
-    this.comicService.createComic(formData)
+    this.comicService.createComic(this.toFormData(data))
       .subscribe(() => {
-        console.log('Comic created!');
+        this.dialogRef.close();
       });
   }
 
@@ -83,6 +84,19 @@ export class ComicFormComponent implements OnInit {
 
   onNoClick() {
     this.dialogRef.close();
+  }
+
+  toFormData(formData: ComicSubmitData): FormData {
+    const fd = new FormData();
+    fd.append('publisher', '' + formData.publisher);
+    fd.append('name', formData.name);
+    fd.append('issues', '' + formData.issues);
+    fd.append('description', formData.description);
+    formData.authors.forEach((author) => fd.append('authors', '' + author));
+    formData.genres.forEach((genre) => fd.append('genres', '' + genre));
+    fd.append('image', this.selectedFile);
+
+    return fd;
   }
 
   getData() {
