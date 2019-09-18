@@ -9,6 +9,14 @@
             <mat-error *ngIf="comicForm.get('name').hasError('required')">
               The name field is required
             </mat-error>
+
+            <mat-error *ngIf="comicForm.get('name').hasError('minlength')">
+              Minimum length is 3
+            </mat-error>
+
+            <mat-error *ngIf="comicForm.get('name').hasError('maxlength')">
+              Maximum length is 50
+            </mat-error>
           </mat-form-field>
         </div>
 
@@ -17,6 +25,10 @@
             <input formControlName="issues" matInput placeholder="Issues">
             <mat-error *ngIf="comicForm.get('issues').hasError('required')">
               The issues field is required
+            </mat-error>
+
+            <mat-error *ngIf="comicForm.get('issues').hasError('regex')">
+              Issues must be a number
             </mat-error>
           </mat-form-field>
         </div>
@@ -27,6 +39,15 @@
             <mat-error *ngIf="comicForm.get('description').hasError('required')">
               The description field is required
             </mat-error>
+
+            <mat-error *ngIf="comicForm.get('description').hasError('minlength')">
+              Minimum length is 10
+            </mat-error>
+
+            <mat-error *ngIf="comicForm.get('description').hasError('maxlength')">
+              Maximum length is 700
+            </mat-error>
+
           </mat-form-field>
         </div>
 

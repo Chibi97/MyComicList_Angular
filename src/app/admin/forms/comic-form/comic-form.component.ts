@@ -6,6 +6,7 @@ import { Genre, AuthorRead, Publisher } from 'src/app/types/responses';
 import { PublishersService } from 'src/app/services/publishers.service';
 import { AuthorsService } from 'src/app/services/authors.service';
 import { ComicsService } from 'src/app/services/comics.service';
+import { validateRegex } from 'src/app/shared/validators/regex.directive';
 
 @Component({
   selector: 'app-comic-form',
@@ -23,9 +24,9 @@ export class ComicFormComponent implements OnInit {
   ) { }
 
   comicForm = this.fb.group({
-    name: ['', Validators.required],
-    issues: ['', Validators.required],
-    description: ['', Validators.required],
+    name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+    issues: ['', [Validators.required, validateRegex(/^\d+$/)]],
+    description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(700)]],
     authors: [[], Validators.required],
     genres: [[], Validators.required],
     publisher: ['', Validators.required],

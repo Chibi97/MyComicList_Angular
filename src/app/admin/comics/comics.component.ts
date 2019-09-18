@@ -38,6 +38,10 @@ export class ComicsComponent implements OnInit, AfterViewInit {
     this.formDialog.open(ComicFormComponent, {width: '40rem'});
   }
 
+  closeFormDialog() {
+    this.formDialog.closeAll();
+  }
+
   ngOnInit() {
     this.dataSource = new ComicsDataSource(this.service);
     this.dataSource.loadComics();
