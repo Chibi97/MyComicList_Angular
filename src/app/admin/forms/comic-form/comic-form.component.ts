@@ -95,7 +95,8 @@ export class ComicFormComponent implements OnInit {
             description: this.editComic.description,
             authors: this.editComic.authors.map(a => authorsDict[a]),
             genres: this.editComic.genres.map(g => genresDict[g]),
-            publisher: publisherDict[this.editComic.publisher]
+            publisher: publisherDict[this.editComic.publisher],
+            publishedAt: this.editComic.publishedAt
           });
 
           this.imgUrl = this.editComic.image;
