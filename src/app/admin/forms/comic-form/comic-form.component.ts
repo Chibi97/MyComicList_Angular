@@ -107,7 +107,7 @@ export class ComicFormComponent implements OnInit {
     }
   }
 
-  const handleError = (err: HttpErrorResponse) => {
+  handleError(err: HttpErrorResponse) {
     if (isErrorResponse(err.error)) {
       if (err.error.errors.Name) {
         this.comicForm.controls.name.setErrors({ backend: err.error.errors.Name });
