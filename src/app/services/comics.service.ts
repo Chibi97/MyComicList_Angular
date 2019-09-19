@@ -4,6 +4,7 @@ import { Comic, PageResponse } from '../types/responses';
 import { tap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
+import { ComicSubmitData } from '../admin/forms/comic-form/comic-form.component';
 
 
 @Injectable({
@@ -13,13 +14,13 @@ export class ComicsService {
 
   constructor(private client: ClientService) { }
 
-  createComic(data: FormData) {
-    return this.client.post('comics', data);
+  createComic(data: ComicSubmitData) {
+    return this.client.post('comics', this.toFormData(data));
   }
 
-  editComic(comic: Comic) {
+  editComic(comic: ComicSubmitData) {
     const { id, ...other } = comic;
-    return this.client.put(`comics/${id}`, other);
+    return this.client.put(`comics/${id}`, this.toFormData(other));
   }
 
   deleteComic(comicId: number) {
@@ -69,5 +70,20 @@ export class ComicsService {
     });
 
     return resp;
+  }
+
+  toFormData(formData: ComicSubmitData): FormData {
+    const fd = new FormData();
+    fd.append('publisher', '' + formData.publisher);
+    fd.append('name', formData.name);
+    fd.append('issues', '' + formData.issues);
+    fd.append('description', formData.description);
+    formData.authors.forEach((author) => fd.append('authors', '' + author));
+    formData.genres.forEach((genre) => fd.append('genres', '' + genre));
+    if (formData.selectedFile) {
+      fd.append('image', formData.selectedFile);
+    }
+
+    return fd;
   }
 }

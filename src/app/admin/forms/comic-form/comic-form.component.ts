@@ -1,14 +1,23 @@
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import {Component, OnInit, Inject, AfterViewInit} from '@angular/core';
 import { GenresService } from 'src/app/services/genres.service';
-import { Genre, AuthorRead, Publisher } from 'src/app/types/responses';
+import { Genre, AuthorRead, Publisher, Comic } from 'src/app/types/responses';
 import { PublishersService } from 'src/app/services/publishers.service';
 import { AuthorsService } from 'src/app/services/authors.service';
 import { ComicsService } from 'src/app/services/comics.service';
 import { validateRegex } from 'src/app/shared/validators/regex.directive';
+import { forkJoin } from 'rxjs';
+
+export interface WithId {
+  id: number;
+}
+
+interface Dict { [id: string]: number; }
 
 export interface ComicSubmitData {
+  id?: number;
+  selectedFile?: File;
   image: string;
   name: string;
   genres: number[];
@@ -30,8 +39,11 @@ export class ComicFormComponent implements OnInit {
     private genreService: GenresService,
     private publisherService: PublishersService,
     private authorService: AuthorsService,
-    private comicService: ComicsService
-  ) { }
+    private comicService: ComicsService,
+    @Inject(MAT_DIALOG_DATA) comic: Comic
+  ) {
+    this.editComic = comic;
+  }
 
   comicForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
@@ -43,6 +55,7 @@ export class ComicFormComponent implements OnInit {
     image: ['', Validators.required]
   });
 
+  editComic: Comic;
   genres: Genre[];
   authors: AuthorRead[];
   publishers: Publisher[];
@@ -51,7 +64,48 @@ export class ComicFormComponent implements OnInit {
   selectedFile: File;
 
   ngOnInit() {
-    this.getData();
+    if (this.editComic) {
+      this.comicForm.get('image').setValidators([]);
+      forkJoin(
+        this.genreService.getGenres(),
+        this.authorService.getAuthors(),
+        this.publisherService.getPublishers()
+      )
+        .subscribe((results) => {
+          this.genres = results[0];
+          this.authors = results[1];
+          this.publishers = results[2];
+
+          const genresDict = this.toValId(this.genres, 'name');
+          const authorsDict = this.toValId(this.authors, 'fullName');
+          const publisherDict = this.toValId(this.publishers, 'name');
+
+          this.comicForm.patchValue({
+            name: this.editComic.name,
+            issues: this.editComic.issues,
+            description: this.editComic.description,
+            authors: this.editComic.authors.map(a => authorsDict[a]),
+            genres: this.editComic.genres.map(g => genresDict[g]),
+            publisher: publisherDict[this.editComic.publisher]
+          });
+
+          this.imgUrl = this.editComic.image;
+          this.btnText = 'Edit Comic';
+        });
+
+    } else {
+      this.getData();
+    }
+  }
+
+  getFormValidationErrors() {
+    const errs = [];
+    Object.keys(this.comicForm.controls).forEach(key => {
+      const errors = this.comicForm.get(key).errors;
+      errs.push({key, errors});
+    });
+
+    return errs;
   }
 
   onUploadClick(fileInputRef: HTMLInputElement) {
@@ -61,10 +115,29 @@ export class ComicFormComponent implements OnInit {
   onSubmit() {
     const data = this.comicForm.value as ComicSubmitData;
 
-    this.comicService.createComic(this.toFormData(data))
-      .subscribe(() => {
-        this.dialogRef.close();
-      });
+    if (this.editComic) {
+      data.selectedFile = this.selectedFile;
+      data.id = this.editComic.id;
+      this.comicService.editComic(data)
+        .subscribe(() => {
+          this.dialogRef.close();
+        });
+    } else {
+      data.selectedFile = this.selectedFile;
+      this.comicService.createComic(data)
+        .subscribe(() => {
+          this.dialogRef.close();
+        });
+    }
+  }
+
+  toValId<T extends WithId, K extends keyof Omit<T, 'id'>>(withId: T[], key: K) {
+    const initial: Dict = {};
+    return withId.reduce((prev: Dict, curr: T) => {
+      const v = curr[key].toString();
+      prev[v] = curr.id;
+      return prev;
+    }, initial);
   }
 
   preview(files: File[]) {
@@ -84,19 +157,6 @@ export class ComicFormComponent implements OnInit {
 
   onNoClick() {
     this.dialogRef.close();
-  }
-
-  toFormData(formData: ComicSubmitData): FormData {
-    const fd = new FormData();
-    fd.append('publisher', '' + formData.publisher);
-    fd.append('name', formData.name);
-    fd.append('issues', '' + formData.issues);
-    fd.append('description', formData.description);
-    formData.authors.forEach((author) => fd.append('authors', '' + author));
-    formData.genres.forEach((genre) => fd.append('genres', '' + genre));
-    fd.append('image', this.selectedFile);
-
-    return fd;
   }
 
   getData() {

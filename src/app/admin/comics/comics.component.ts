@@ -2,7 +2,6 @@ import { ComicFormComponent } from './../forms/comic-form/comic-form.component';
 import { Component, OnInit, HostBinding, ViewChild, AfterViewInit } from '@angular/core';
 import { Comic } from 'src/app/types/responses';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -39,6 +38,10 @@ export class ComicsComponent implements OnInit, AfterViewInit {
       .afterClosed().subscribe(() => {
         this.dataSource.loadComics();
       });
+  }
+
+  edit(comic: Comic) {
+    this.formDialog.open(ComicFormComponent, {width: '40rem', data: comic});
   }
 
   closeFormDialog() {
