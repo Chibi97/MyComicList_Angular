@@ -191,7 +191,7 @@ export class ComicFormComponent implements OnInit {
     }
   }
 
-  toValId<T extends WithId, K extends keyof Omit<T, 'id'>>(withId: T[], key: K) {
+  toValId<T extends WithId, K extends keyof POmit<T, 'id'>>(withId: T[], key: K) {
     const initial: Dict = {};
     return withId.reduce((prev: Dict, curr: T) => {
       const v = curr[key].toString();
