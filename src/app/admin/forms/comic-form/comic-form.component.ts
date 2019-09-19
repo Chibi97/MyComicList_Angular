@@ -181,7 +181,7 @@ export class ComicFormComponent implements OnInit {
       this.comicService.editComic(data)
         .subscribe(() => {
           this.dialogRef.close();
-        });
+        }, this.handleError);
     } else {
       data.selectedFile = this.selectedFile;
       this.comicService.createComic(data)
