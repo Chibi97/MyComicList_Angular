@@ -3,6 +3,10 @@
 </h1>
 <div mat-dialog-content>
     <p>{{comic.description}}</p>
+    <span class="headline">Publisher:</span>
+    <span>{{comic.publisher}} </span>
+    <br/>
+    <span class="headline">Published at:</span><span>{{comic.publishedAt | date:'longDate' }}</span>
     <p class="headline">Genres:</p>
 
     <mat-grid-list cols="3" rowHeight="3:1">
@@ -13,11 +17,6 @@
     <mat-grid-list cols="3" rowHeight="3:1">
       <mat-grid-tile *ngFor="let a of comic.authors">{{a}}</mat-grid-tile>
     </mat-grid-list>
-
-    <p class="headline">Publisher:</p>
-    <mat-list>
-      <mat-list-item> {{comic.publisher}} </mat-list-item>
-    </mat-list>
 </div>
 <div mat-dialog-actions>
   <button class="ml-auto" color="primary" mat-raised-button (click)="onClose()">Close Preview</button>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Comic } from 'src/app/types/responses';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-description-preview',
@@ -9,13 +10,14 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class DescriptionPreviewComponent {
   comic: Comic;
+  date: any;
 
   constructor(
     public dialogRef: MatDialogRef<DescriptionPreviewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Comic
   ) {
     this.comic = data;
-    console.log(this.comic);
+    // this.date = moment(this.comic.publishedAt).format('MMMM Do YYYY');
   }
 
 

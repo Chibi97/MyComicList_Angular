@@ -9,6 +9,7 @@ import { ComicsService } from 'src/app/services/comics.service';
 import { validateRegex } from 'src/app/shared/validators/regex.directive';
 import { isErrorResponse } from 'src/app/types/utils';
 import { HttpErrorResponse } from '@angular/common/http';
+import * as moment from 'moment';
 
 export interface ComicSubmitData {
   image: string;
@@ -17,6 +18,7 @@ export interface ComicSubmitData {
   authors: number[];
   issues: number;
   publisher: number;
+  publishedAt: Date;
   description: string;
 }
 
@@ -27,6 +29,9 @@ export interface ComicSubmitData {
 })
 export class ComicFormComponent implements OnInit {
   customError: string;
+  maxDate = new Date();
+  minDate = new Date(1970, 1, 1);
+
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ComicFormComponent>,
@@ -43,6 +48,7 @@ export class ComicFormComponent implements OnInit {
     authors: [[], Validators.required],
     genres: [[], Validators.required],
     publisher: ['', Validators.required],
+    publishedAt: ['', [Validators.required]],
     image: ['', Validators.required]
   });
 
@@ -63,7 +69,7 @@ export class ComicFormComponent implements OnInit {
 
   onSubmit() {
     const data = this.comicForm.value as ComicSubmitData;
-
+    console.log(data);
     this.comicService.createComic(this.toFormData(data))
       .subscribe(() => {
         console.log('Comic created!');
@@ -93,6 +99,10 @@ export class ComicFormComponent implements OnInit {
 
           if (err.error.errors.Publisher) {
             this.comicForm.controls.publisher.setErrors({ backend: err.error.errors.Publisher });
+          }
+
+          if (err.error.errors.PublishedAt) {
+            this.comicForm.controls.publishedAt.setErrors({ backend: err.error.errors.PublishedAt });
           }
 
           if (err.error.errors.Image) {
@@ -141,6 +151,7 @@ export class ComicFormComponent implements OnInit {
     fd.append('name', formData.name);
     fd.append('issues', '' + formData.issues);
     fd.append('description', formData.description);
+    fd.append('publishedAt', moment(formData.publishedAt).format('YYYY-MM-DD'));
     formData.authors.forEach((author) => fd.append('authors', '' + author));
     formData.genres.forEach((genre) => fd.append('genres', '' + genre));
     fd.append('image', this.selectedFile);

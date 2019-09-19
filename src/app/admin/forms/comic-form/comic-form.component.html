@@ -114,6 +114,29 @@
             </mat-error>
           </mat-form-field>
         </div>
+
+        <div class="d-block">
+          <mat-form-field>
+            <input matInput formControlName="publishedAt" [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
+              placeholder="Published at:">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-error *ngIf="comicForm.get('publishedAt').hasError('required') && comicForm.get('publishedAt').touched">
+            The datepicker is required
+          </mat-error>
+
+          <mat-error
+            *ngIf="comicForm.get('publishedAt').hasError('matDatepickerMin')">
+            Minimum value is 01.01.1970
+          </mat-error>
+
+          <mat-error *ngIf="comicForm.get('publishedAt').hasError('matDatepickerMax')">
+            Maximum value is today's date
+          </mat-error>
+        </div>
+
       </div>
       <div fxLayout="column" fxLayoutAlign="start center" fxFlex>
         <input (input)="preview(file.files)" formControlName="image" #file type="file" accept="image/*" class="file-upload"  />
