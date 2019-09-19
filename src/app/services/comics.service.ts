@@ -5,7 +5,7 @@ import { tap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { ComicSubmitData } from '../admin/forms/comic-form/comic-form.component';
-
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +78,7 @@ export class ComicsService {
     fd.append('name', formData.name);
     fd.append('issues', '' + formData.issues);
     fd.append('description', formData.description);
+    fd.append('publishedAt', moment(formData.publishedAt).format('YYYY-MM-DD'));
     formData.authors.forEach((author) => fd.append('authors', '' + author));
     formData.genres.forEach((genre) => fd.append('genres', '' + genre));
     if (formData.selectedFile) {

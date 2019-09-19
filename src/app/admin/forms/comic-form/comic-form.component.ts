@@ -8,6 +8,9 @@ import { AuthorsService } from 'src/app/services/authors.service';
 import { ComicsService } from 'src/app/services/comics.service';
 import { validateRegex } from 'src/app/shared/validators/regex.directive';
 import { forkJoin } from 'rxjs';
+import { isErrorResponse } from 'src/app/types/utils';
+import { HttpErrorResponse } from '@angular/common/http';
+import * as moment from 'moment';
 
 export interface WithId {
   id: number;
@@ -24,6 +27,7 @@ export interface ComicSubmitData {
   authors: number[];
   issues: number;
   publisher: number;
+  publishedAt: Date;
   description: string;
 }
 
@@ -33,6 +37,10 @@ export interface ComicSubmitData {
   styleUrls: ['./comic-form.component.scss']
 })
 export class ComicFormComponent implements OnInit {
+  customError: string;
+  maxDate = new Date();
+  minDate = new Date(1970, 1, 1);
+
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<ComicFormComponent>,
@@ -52,6 +60,7 @@ export class ComicFormComponent implements OnInit {
     authors: [[], Validators.required],
     genres: [[], Validators.required],
     publisher: ['', Validators.required],
+    publishedAt: ['', [Validators.required]],
     image: ['', Validators.required]
   });
 
@@ -98,6 +107,56 @@ export class ComicFormComponent implements OnInit {
     }
   }
 
+  const handleError = (err: HttpErrorResponse) => {
+    if (isErrorResponse(err.error)) {
+      if (err.error.errors.Name) {
+        this.comicForm.controls.name.setErrors({ backend: err.error.errors.Name });
+      }
+
+      if (err.error.errors.Issues) {
+        this.comicForm.controls.issues.setErrors({ backend: err.error.errors.Issues });
+      }
+
+      if (err.error.errors.Description) {
+        this.comicForm.controls.description.setErrors({ backend: err.error.errors.Description });
+      }
+
+      if (err.error.errors.Genres) {
+        this.comicForm.controls.genres.setErrors({ backend: err.error.errors.Genres });
+      }
+
+      if (err.error.errors.Authors) {
+        this.comicForm.controls.authors.setErrors({ backend: err.error.errors.Authors });
+      }
+
+      if (err.error.errors.Publisher) {
+        this.comicForm.controls.publisher.setErrors({ backend: err.error.errors.Publisher });
+      }
+
+      if (err.error.errors.PublishedAt) {
+        this.comicForm.controls.publishedAt.setErrors({ backend: err.error.errors.PublishedAt });
+      }
+
+      if (err.error.errors.Image) {
+        this.comicForm.controls.image.setErrors({ backend: err.error.errors.image });
+      }
+
+    } else {
+      this.customError = err.error.message;
+      if (this.customError.includes('Name')) {
+        this.comicForm.controls.name.setErrors({ invalid: true });
+      } else {
+        this.comicForm.setErrors({ invalid: true });
+      }
+
+      if (this.customError.includes('Image')) {
+        this.comicForm.controls.image.setErrors({ invalid: true });
+      } else {
+        this.comicForm.setErrors({ invalid: true });
+      }
+    }
+  }
+
   getFormValidationErrors() {
     const errs = [];
     Object.keys(this.comicForm.controls).forEach(key => {
@@ -127,7 +186,7 @@ export class ComicFormComponent implements OnInit {
       this.comicService.createComic(data)
         .subscribe(() => {
           this.dialogRef.close();
-        });
+        }, this.handleError);
     }
   }
 
@@ -171,5 +230,13 @@ export class ComicFormComponent implements OnInit {
     this.publisherService.getPublishers().subscribe((publishers) => {
       this.publishers = publishers;
     });
+  }
+
+  displayErrors(name: string) {
+    if (this.comicForm.get(name).errors) {
+      return this.comicForm.get(name).errors.backend;
+    }
+
+    return [];
   }
 }
