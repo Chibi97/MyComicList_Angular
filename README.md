@@ -7,5 +7,5 @@ You can find the documentation here:
 
 ## Configuration
 
-Run `nmp install` and `ng server` and you're set to go! 
+Run `nmp install` and `ng serve` and you're set to go! 
 
