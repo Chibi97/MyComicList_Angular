@@ -110,6 +110,8 @@ export class ComicFormComponent implements OnInit {
 
   handleError(err: HttpErrorResponse) {
     if (isErrorResponse(err.error)) {
+      console.log(this.comicForm);
+
       if (err.error.errors.Name) {
         this.comicForm.controls.name.setErrors({ backend: err.error.errors.Name });
       }
@@ -144,16 +146,12 @@ export class ComicFormComponent implements OnInit {
 
     } else {
       this.customError = err.error.message;
-      if (this.customError.includes('Name')) {
+      if (this.customError.includes('Comic')) {
         this.comicForm.controls.name.setErrors({ invalid: true });
-      } else {
-        this.comicForm.setErrors({ invalid: true });
       }
 
       if (this.customError.includes('Image')) {
         this.comicForm.controls.image.setErrors({ invalid: true });
-      } else {
-        this.comicForm.setErrors({ invalid: true });
       }
     }
   }
@@ -181,13 +179,13 @@ export class ComicFormComponent implements OnInit {
       this.comicService.editComic(data)
         .subscribe(() => {
           this.dialogRef.close();
-        }, this.handleError);
+        }, this.handleError.bind(this));
     } else {
       data.selectedFile = this.selectedFile;
       this.comicService.createComic(data)
         .subscribe(() => {
           this.dialogRef.close();
-        }, this.handleError);
+        }, this.handleError.bind(this));
     }
   }
 

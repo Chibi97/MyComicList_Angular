@@ -135,6 +135,10 @@
           <mat-error *ngIf="comicForm.get('publishedAt').hasError('matDatepickerMax')">
             Maximum value is today's date
           </mat-error>
+
+          <mat-error *ngFor="let error of displayErrors('publishedAt')">
+            {{error}}
+          </mat-error>
         </div>
 
       </div>

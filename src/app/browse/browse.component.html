@@ -30,6 +30,7 @@
       <h1 class="no-msg">No data, sorry.</h1>
     </ng-template>
   </div>
-  <mat-paginator (page)="fetchData($event)" [length]="totalCount" [pageSize]="pageSize"></mat-paginator>
+  <mat-paginator (page)="fetchData($event)" [length]="totalCount" [pageSize]="pageSize"
+    showFirstLastButtons></mat-paginator>
 
 </app-layout>
